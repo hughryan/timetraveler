@@ -1,0 +1,523 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		57007EC018A336980080A5A5 /* TestDraft.c in Sources */ = {isa = PBXBuildFile; fileRef = 57007EBF18A336980080A5A5 /* TestDraft.c */; };
+		577F88C0189F60BE00EC9DC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88BF189F60BE00EC9DC3 /* Foundation.framework */; };
+		577F88C2189F60BE00EC9DC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */; };
+		577F88C4189F60BE00EC9DC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C3189F60BE00EC9DC3 /* UIKit.framework */; };
+		577F88CA189F60BE00EC9DC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 577F88C8189F60BE00EC9DC3 /* InfoPlist.strings */; };
+		577F88CC189F60BE00EC9DC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F88CB189F60BE00EC9DC3 /* main.m */; };
+		577F88D0189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F88CF189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m */; };
+		577F88D8189F60BE00EC9DC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 577F88D7189F60BE00EC9DC3 /* Images.xcassets */; };
+		577F88DF189F60BE00EC9DC3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88DE189F60BE00EC9DC3 /* XCTest.framework */; };
+		577F88E0189F60BE00EC9DC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88BF189F60BE00EC9DC3 /* Foundation.framework */; };
+		577F88E1189F60BE00EC9DC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C3189F60BE00EC9DC3 /* UIKit.framework */; };
+		577F88E9189F60BE00EC9DC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 577F88E7189F60BE00EC9DC3 /* InfoPlist.strings */; };
+		577F88EB189F60BE00EC9DC3 /* TimeTravelerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F88EA189F60BE00EC9DC3 /* TimeTravelerTests.m */; };
+		57AA2B3218A47BC600AD9309 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57AA2B3018A47BC600AD9309 /* Main.storyboard */; };
+		57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m */; };
+		57E8886718A43EC900428077 /* Recommendations.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886418A43EC900428077 /* Recommendations.m */; };
+		57E8886818A43EC900428077 /* TripDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886618A43EC900428077 /* TripDetails.m */; };
+		57E8886C18A43FE300428077 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886B18A43FE300428077 /* SWRevealViewController.m */; };
+		57E8886F18A4524A00428077 /* TimeTravelerScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		577F88E2189F60BE00EC9DC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 577F88B4189F60BE00EC9DC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 577F88BB189F60BE00EC9DC3;
+			remoteInfo = TimeTraveler;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		57007EBF18A336980080A5A5 /* TestDraft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TestDraft.c; sourceTree = "<group>"; };
+		577F88BC189F60BE00EC9DC3 /* TimeTraveler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTraveler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		577F88BF189F60BE00EC9DC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		577F88C3189F60BE00EC9DC3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		577F88C7189F60BE00EC9DC3 /* TimeTraveler-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimeTraveler-Info.plist"; sourceTree = "<group>"; };
+		577F88C9189F60BE00EC9DC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		577F88CB189F60BE00EC9DC3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		577F88CD189F60BE00EC9DC3 /* TimeTraveler-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TimeTraveler-Prefix.pch"; sourceTree = "<group>"; };
+		577F88CE189F60BE00EC9DC3 /* TimeTravelerAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeTravelerAppDelegate.h; sourceTree = "<group>"; };
+		577F88CF189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerAppDelegate.m; sourceTree = "<group>"; };
+		577F88D7189F60BE00EC9DC3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		577F88DD189F60BE00EC9DC3 /* TimeTravelerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTravelerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		577F88DE189F60BE00EC9DC3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		577F88E6189F60BE00EC9DC3 /* TimeTravelerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimeTravelerTests-Info.plist"; sourceTree = "<group>"; };
+		577F88E8189F60BE00EC9DC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		577F88EA189F60BE00EC9DC3 /* TimeTravelerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerTests.m; sourceTree = "<group>"; };
+		57AA2B3118A47BC600AD9309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = TimeTraveler/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		57BD1AAD18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerSettingsTableViewController.h; sourceTree = "<group>"; };
+		57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerSettingsTableViewController.m; sourceTree = "<group>"; };
+		57E8886318A43EC900428077 /* Recommendations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recommendations.h; sourceTree = "<group>"; };
+		57E8886418A43EC900428077 /* Recommendations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recommendations.m; sourceTree = "<group>"; };
+		57E8886518A43EC900428077 /* TripDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetails.h; sourceTree = "<group>"; };
+		57E8886618A43EC900428077 /* TripDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetails.m; sourceTree = "<group>"; };
+		57E8886A18A43FE300428077 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		57E8886B18A43FE300428077 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerScheduleViewController.h; sourceTree = "<group>"; };
+		57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerScheduleViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		577F88B9189F60BE00EC9DC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577F88C2189F60BE00EC9DC3 /* CoreGraphics.framework in Frameworks */,
+				577F88C4189F60BE00EC9DC3 /* UIKit.framework in Frameworks */,
+				577F88C0189F60BE00EC9DC3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577F88DA189F60BE00EC9DC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577F88DF189F60BE00EC9DC3 /* XCTest.framework in Frameworks */,
+				577F88E1189F60BE00EC9DC3 /* UIKit.framework in Frameworks */,
+				577F88E0189F60BE00EC9DC3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		577F88B3189F60BE00EC9DC3 = {
+			isa = PBXGroup;
+			children = (
+				577F88C5189F60BE00EC9DC3 /* TimeTraveler */,
+				577F88E4189F60BE00EC9DC3 /* TimeTravelerTests */,
+				577F88BE189F60BE00EC9DC3 /* Frameworks */,
+				577F88BD189F60BE00EC9DC3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		577F88BD189F60BE00EC9DC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				577F88BC189F60BE00EC9DC3 /* TimeTraveler.app */,
+				577F88DD189F60BE00EC9DC3 /* TimeTravelerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		577F88BE189F60BE00EC9DC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				577F88BF189F60BE00EC9DC3 /* Foundation.framework */,
+				577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */,
+				577F88C3189F60BE00EC9DC3 /* UIKit.framework */,
+				577F88DE189F60BE00EC9DC3 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		577F88C5189F60BE00EC9DC3 /* TimeTraveler */ = {
+			isa = PBXGroup;
+			children = (
+				577F88CE189F60BE00EC9DC3 /* TimeTravelerAppDelegate.h */,
+				577F88CF189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m */,
+				57AA2B3018A47BC600AD9309 /* Main.storyboard */,
+				57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */,
+				57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */,
+				57BD1AAD18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.h */,
+				57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m */,
+				577F88D7189F60BE00EC9DC3 /* Images.xcassets */,
+				57E8886918A43FE300428077 /* SWRevealViewController */,
+				57E8886218A43EC900428077 /* Model */,
+				577F88C6189F60BE00EC9DC3 /* Supporting Files */,
+			);
+			path = TimeTraveler;
+			sourceTree = "<group>";
+		};
+		577F88C6189F60BE00EC9DC3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				577F88C7189F60BE00EC9DC3 /* TimeTraveler-Info.plist */,
+				577F88C8189F60BE00EC9DC3 /* InfoPlist.strings */,
+				577F88CB189F60BE00EC9DC3 /* main.m */,
+				577F88CD189F60BE00EC9DC3 /* TimeTraveler-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		577F88E4189F60BE00EC9DC3 /* TimeTravelerTests */ = {
+			isa = PBXGroup;
+			children = (
+				57007EBF18A336980080A5A5 /* TestDraft.c */,
+				577F88EA189F60BE00EC9DC3 /* TimeTravelerTests.m */,
+				577F88E5189F60BE00EC9DC3 /* Supporting Files */,
+			);
+			path = TimeTravelerTests;
+			sourceTree = "<group>";
+		};
+		577F88E5189F60BE00EC9DC3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				577F88E6189F60BE00EC9DC3 /* TimeTravelerTests-Info.plist */,
+				577F88E7189F60BE00EC9DC3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57E8886218A43EC900428077 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57E8886318A43EC900428077 /* Recommendations.h */,
+				57E8886418A43EC900428077 /* Recommendations.m */,
+				57E8886518A43EC900428077 /* TripDetails.h */,
+				57E8886618A43EC900428077 /* TripDetails.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		57E8886918A43FE300428077 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				57E8886A18A43FE300428077 /* SWRevealViewController.h */,
+				57E8886B18A43FE300428077 /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		577F88BB189F60BE00EC9DC3 /* TimeTraveler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 577F88EE189F60BE00EC9DC3 /* Build configuration list for PBXNativeTarget "TimeTraveler" */;
+			buildPhases = (
+				577F88B8189F60BE00EC9DC3 /* Sources */,
+				577F88B9189F60BE00EC9DC3 /* Frameworks */,
+				577F88BA189F60BE00EC9DC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimeTraveler;
+			productName = TimeTraveler;
+			productReference = 577F88BC189F60BE00EC9DC3 /* TimeTraveler.app */;
+			productType = "com.apple.product-type.application";
+		};
+		577F88DC189F60BE00EC9DC3 /* TimeTravelerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 577F88F1189F60BE00EC9DC3 /* Build configuration list for PBXNativeTarget "TimeTravelerTests" */;
+			buildPhases = (
+				577F88D9189F60BE00EC9DC3 /* Sources */,
+				577F88DA189F60BE00EC9DC3 /* Frameworks */,
+				577F88DB189F60BE00EC9DC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				577F88E3189F60BE00EC9DC3 /* PBXTargetDependency */,
+			);
+			name = TimeTravelerTests;
+			productName = TimeTravelerTests;
+			productReference = 577F88DD189F60BE00EC9DC3 /* TimeTravelerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		577F88B4189F60BE00EC9DC3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TimeTraveler;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = snowFish;
+				TargetAttributes = {
+					577F88DC189F60BE00EC9DC3 = {
+						TestTargetID = 577F88BB189F60BE00EC9DC3;
+					};
+				};
+			};
+			buildConfigurationList = 577F88B7189F60BE00EC9DC3 /* Build configuration list for PBXProject "TimeTraveler" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 577F88B3189F60BE00EC9DC3;
+			productRefGroup = 577F88BD189F60BE00EC9DC3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				577F88BB189F60BE00EC9DC3 /* TimeTraveler */,
+				577F88DC189F60BE00EC9DC3 /* TimeTravelerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		577F88BA189F60BE00EC9DC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57AA2B3218A47BC600AD9309 /* Main.storyboard in Resources */,
+				577F88D8189F60BE00EC9DC3 /* Images.xcassets in Resources */,
+				577F88CA189F60BE00EC9DC3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577F88DB189F60BE00EC9DC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577F88E9189F60BE00EC9DC3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		577F88B8189F60BE00EC9DC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57E8886718A43EC900428077 /* Recommendations.m in Sources */,
+				57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m in Sources */,
+				577F88D0189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m in Sources */,
+				57E8886818A43EC900428077 /* TripDetails.m in Sources */,
+				577F88CC189F60BE00EC9DC3 /* main.m in Sources */,
+				57E8886C18A43FE300428077 /* SWRevealViewController.m in Sources */,
+				57E8886F18A4524A00428077 /* TimeTravelerScheduleViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577F88D9189F60BE00EC9DC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577F88EB189F60BE00EC9DC3 /* TimeTravelerTests.m in Sources */,
+				57007EC018A336980080A5A5 /* TestDraft.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		577F88E3189F60BE00EC9DC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 577F88BB189F60BE00EC9DC3 /* TimeTraveler */;
+			targetProxy = 577F88E2189F60BE00EC9DC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		577F88C8189F60BE00EC9DC3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				577F88C9189F60BE00EC9DC3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		577F88E7189F60BE00EC9DC3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				577F88E8189F60BE00EC9DC3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		57AA2B3018A47BC600AD9309 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57AA2B3118A47BC600AD9309 /* Base */,
+			);
+			name = Main.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		577F88EC189F60BE00EC9DC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		577F88ED189F60BE00EC9DC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		577F88EF189F60BE00EC9DC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeTraveler/TimeTraveler-Prefix.pch";
+				INFOPLIST_FILE = "TimeTraveler/TimeTraveler-Info.plist";
+				PRODUCT_NAME = TimeTraveler;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		577F88F0189F60BE00EC9DC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeTraveler/TimeTraveler-Prefix.pch";
+				INFOPLIST_FILE = "TimeTraveler/TimeTraveler-Info.plist";
+				PRODUCT_NAME = TimeTraveler;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		577F88F2189F60BE00EC9DC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TimeTraveler.app/TimeTraveler";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeTraveler/TimeTraveler-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TimeTravelerTests/TimeTravelerTests-Info.plist";
+				PRODUCT_NAME = TimeTravelerTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		577F88F3189F60BE00EC9DC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TimeTraveler.app/TimeTraveler";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeTraveler/TimeTraveler-Prefix.pch";
+				INFOPLIST_FILE = "TimeTravelerTests/TimeTravelerTests-Info.plist";
+				PRODUCT_NAME = TimeTravelerTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		577F88B7189F60BE00EC9DC3 /* Build configuration list for PBXProject "TimeTraveler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577F88EC189F60BE00EC9DC3 /* Debug */,
+				577F88ED189F60BE00EC9DC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		577F88EE189F60BE00EC9DC3 /* Build configuration list for PBXNativeTarget "TimeTraveler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577F88EF189F60BE00EC9DC3 /* Debug */,
+				577F88F0189F60BE00EC9DC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		577F88F1189F60BE00EC9DC3 /* Build configuration list for PBXNativeTarget "TimeTravelerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577F88F2189F60BE00EC9DC3 /* Debug */,
+				577F88F3189F60BE00EC9DC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 577F88B4189F60BE00EC9DC3 /* Project object */;
+}

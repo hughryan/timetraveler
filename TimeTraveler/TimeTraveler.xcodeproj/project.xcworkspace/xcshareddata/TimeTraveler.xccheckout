@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>49C248F5-C73B-4C74-9CE3-5938B903389F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TimeTraveler</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8F3270C7-CF07-4E54-8F03-99A54D3E932D</key>
+		<string>https://github.com/hughryan/timetraveler.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TimeTraveler/TimeTraveler.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8F3270C7-CF07-4E54-8F03-99A54D3E932D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/hughryan/timetraveler.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8F3270C7-CF07-4E54-8F03-99A54D3E932D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8F3270C7-CF07-4E54-8F03-99A54D3E932D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xcode</string>
+		</dict>
+	</array>
+</dict>
+</plist>
