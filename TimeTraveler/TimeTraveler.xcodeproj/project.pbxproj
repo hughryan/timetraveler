@@ -23,9 +23,9 @@
 		57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m */; };
 		57E8886C18A43FE300428077 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886B18A43FE300428077 /* SWRevealViewController.m */; };
 		57E8886F18A4524A00428077 /* TimeTravelerScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */; };
+		57EB9A1F18B000A2004604E2 /* TimeTravelerCoreDataTripDetails.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57EB9A1D18B000A2004604E2 /* TimeTravelerCoreDataTripDetails.xcdatamodeld */; };
+		57EB9A2218B00181004604E2 /* TimeTravelerTripDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EB9A2118B00181004604E2 /* TimeTravelerTripDetails.m */; };
 		FAE00CD318AF192D00E1CC1D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE00CD218AF192D00E1CC1D /* CoreData.framework */; };
-		FAE00CD618AF198800E1CC1D /* CoreTripModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAE00CD418AF198800E1CC1D /* CoreTripModel.xcdatamodeld */; };
-		FAE00CD918AF1A6700E1CC1D /* TripDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE00CD818AF1A6700E1CC1D /* TripDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,10 +62,10 @@
 		57E8886B18A43FE300428077 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerScheduleViewController.h; sourceTree = "<group>"; };
 		57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerScheduleViewController.m; sourceTree = "<group>"; };
+		57EB9A1E18B000A2004604E2 /* TimeTravelerCoreDataTripDetails.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeTravelerCoreDataTripDetails.xcdatamodel; sourceTree = "<group>"; };
+		57EB9A2018B00181004604E2 /* TimeTravelerTripDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerTripDetails.h; sourceTree = "<group>"; };
+		57EB9A2118B00181004604E2 /* TimeTravelerTripDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerTripDetails.m; sourceTree = "<group>"; };
 		FAE00CD218AF192D00E1CC1D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		FAE00CD518AF198800E1CC1D /* CoreTripModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreTripModel.xcdatamodel; sourceTree = "<group>"; };
-		FAE00CD718AF1A6700E1CC1D /* TripDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetails.h; sourceTree = "<group>"; };
-		FAE00CD818AF1A6700E1CC1D /* TripDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetails.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,9 +174,9 @@
 		57E8886218A43EC900428077 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FAE00CD718AF1A6700E1CC1D /* TripDetails.h */,
-				FAE00CD818AF1A6700E1CC1D /* TripDetails.m */,
-				FAE00CD418AF198800E1CC1D /* CoreTripModel.xcdatamodeld */,
+				57EB9A1D18B000A2004604E2 /* TimeTravelerCoreDataTripDetails.xcdatamodeld */,
+				57EB9A2018B00181004604E2 /* TimeTravelerTripDetails.h */,
+				57EB9A2118B00181004604E2 /* TimeTravelerTripDetails.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,12 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE00CD618AF198800E1CC1D /* CoreTripModel.xcdatamodeld in Sources */,
 				57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m in Sources */,
 				577F88D0189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m in Sources */,
-				FAE00CD918AF1A6700E1CC1D /* TripDetails.m in Sources */,
 				577F88CC189F60BE00EC9DC3 /* main.m in Sources */,
+				57EB9A1F18B000A2004604E2 /* TimeTravelerCoreDataTripDetails.xcdatamodeld in Sources */,
 				57E8886C18A43FE300428077 /* SWRevealViewController.m in Sources */,
+				57EB9A2218B00181004604E2 /* TimeTravelerTripDetails.m in Sources */,
 				57E8886F18A4524A00428077 /* TimeTravelerScheduleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,14 +518,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FAE00CD418AF198800E1CC1D /* CoreTripModel.xcdatamodeld */ = {
+		57EB9A1D18B000A2004604E2 /* TimeTravelerCoreDataTripDetails.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FAE00CD518AF198800E1CC1D /* CoreTripModel.xcdatamodel */,
+				57EB9A1E18B000A2004604E2 /* TimeTravelerCoreDataTripDetails.xcdatamodel */,
 			);
-			currentVersion = FAE00CD518AF198800E1CC1D /* CoreTripModel.xcdatamodel */;
-			name = CoreTripModel.xcdatamodeld;
-			path = ../CoreTripModel.xcdatamodeld;
+			currentVersion = 57EB9A1E18B000A2004604E2 /* TimeTravelerCoreDataTripDetails.xcdatamodel */;
+			path = TimeTravelerCoreDataTripDetails.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
