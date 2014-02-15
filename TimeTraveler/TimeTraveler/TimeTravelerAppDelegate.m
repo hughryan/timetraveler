@@ -15,7 +15,8 @@
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-// 1
+#pragma - CoreData
+
 - (NSManagedObjectContext *) managedObjectContext {
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
@@ -29,7 +30,6 @@
     return _managedObjectContext;
 }
 
-//2
 - (NSManagedObjectModel *)managedObjectModel {
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
@@ -39,7 +39,6 @@
     return _managedObjectModel;
 }
 
-//3
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
@@ -56,6 +55,8 @@
     
     return _persistentStoreCoordinator;
 }
+
+#pragma - delegate
 
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
