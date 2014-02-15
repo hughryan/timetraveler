@@ -1,55 +1,21 @@
 //
 //  TripDetails.h
-//  Time Traveler
+//  TimeTraveler
 //
-//  Created by Sean McDonald on 1/25/14.
+//  Created by Production on 2/14/14.
 //  Copyright (c) 2014 snowFish. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-/*
- *Class TripDetails
- *[Description] Class used in "model" implementation, contains 
- *info on user schedule
- *[preconditions] none
- *[input] dateTime, location
- *[output] none
- *
- */
+#import <CoreData/CoreData.h>
 
 
-@interface TripDetails : NSObject{
-    
-    
-    NSInteger departureDay;
-    NSInteger departureMonth;
-    NSInteger departureYear;
-    NSInteger sourceLocation;
-    NSInteger destinationLocation;
-    Boolean notifications;
-    NSInteger wakeTime;
-    NSInteger sleepTime;
-    
-}
+@interface TripDetails : NSManagedObject
 
--(void) SetNotifications;
-
-//creation of location and dateTime properties
-
-@property NSInteger departureDay;
-
-@property NSInteger departureMonth;
-
-@property NSInteger departureYear;
-
-@property NSInteger sourceLocation;
-
-@property NSInteger destinationLocation;
-
-@property NSInteger wakeTime;
-
-@property NSInteger sleepTime;
-
+@property (nonatomic, retain) NSDate * departureDate;
+@property (nonatomic, retain) NSDate * sleepTime;
+@property (nonatomic, retain) NSDate * wakeTime;
+@property (nonatomic, retain) NSString * destinationLocation;
+@property (nonatomic, retain) NSNumber * notificationsFlag;
 
 @end
