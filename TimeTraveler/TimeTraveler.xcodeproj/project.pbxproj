@@ -11,8 +11,6 @@
 		57722CF618AF06A20025237D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88DE189F60BE00EC9DC3 /* XCTest.framework */; };
 		57722CF718AF06A20025237D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88BF189F60BE00EC9DC3 /* Foundation.framework */; };
 		57722CF818AF06A20025237D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C3189F60BE00EC9DC3 /* UIKit.framework */; };
-		57722CFE18AF06A20025237D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57722CFC18AF06A20025237D /* InfoPlist.strings */; };
-		57722D0018AF06A20025237D /* TimeTraveler_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57722CFF18AF06A20025237D /* TimeTraveler_Tests.m */; };
 		577F88C0189F60BE00EC9DC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88BF189F60BE00EC9DC3 /* Foundation.framework */; };
 		577F88C2189F60BE00EC9DC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */; };
 		577F88C4189F60BE00EC9DC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C3189F60BE00EC9DC3 /* UIKit.framework */; };
@@ -54,10 +52,6 @@
 /* Begin PBXFileReference section */
 		57007EBF18A336980080A5A5 /* TestDraft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TestDraft.c; sourceTree = "<group>"; };
 		57722CF518AF06A20025237D /* TimeTraveler Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TimeTraveler Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		57722CFB18AF06A20025237D /* TimeTraveler Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimeTraveler Tests-Info.plist"; sourceTree = "<group>"; };
-		57722CFD18AF06A20025237D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		57722CFF18AF06A20025237D /* TimeTraveler_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTraveler_Tests.m; sourceTree = "<group>"; };
-		57722D0118AF06A20025237D /* TimeTraveler Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TimeTraveler Tests-Prefix.pch"; sourceTree = "<group>"; };
 		577F88BC189F60BE00EC9DC3 /* TimeTraveler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTraveler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577F88BF189F60BE00EC9DC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -123,31 +117,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		57722CF918AF06A20025237D /* TimeTraveler Tests */ = {
-			isa = PBXGroup;
-			children = (
-				57722CFF18AF06A20025237D /* TimeTraveler_Tests.m */,
-				57722CFA18AF06A20025237D /* Supporting Files */,
-			);
-			path = "TimeTraveler Tests";
-			sourceTree = "<group>";
-		};
-		57722CFA18AF06A20025237D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				57722CFB18AF06A20025237D /* TimeTraveler Tests-Info.plist */,
-				57722CFC18AF06A20025237D /* InfoPlist.strings */,
-				57722D0118AF06A20025237D /* TimeTraveler Tests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		577F88B3189F60BE00EC9DC3 = {
 			isa = PBXGroup;
 			children = (
 				577F88C5189F60BE00EC9DC3 /* TimeTraveler */,
 				577F88E4189F60BE00EC9DC3 /* TimeTravelerTests */,
-				57722CF918AF06A20025237D /* TimeTraveler Tests */,
 				577F88BE189F60BE00EC9DC3 /* Frameworks */,
 				577F88BD189F60BE00EC9DC3 /* Products */,
 			);
@@ -343,7 +317,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57722CFE18AF06A20025237D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +345,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57722D0018AF06A20025237D /* TimeTraveler_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,14 +388,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		57722CFC18AF06A20025237D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				57722CFD18AF06A20025237D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		577F88C8189F60BE00EC9DC3 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -644,6 +608,7 @@
 				57722D0518AF06A20025237D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		577F88B7189F60BE00EC9DC3 /* Build configuration list for PBXProject "TimeTraveler" */ = {
 			isa = XCConfigurationList;
