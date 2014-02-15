@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "TripDetails.h"
 
 @interface TimeTravelerTests : XCTestCase
 
@@ -26,9 +27,18 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testBasicTrip
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    TripDetails *testTrip = [[TripDetails alloc] init];
+    
+    [testTrip setDestinationLocation:@"UTC +5"];
+    
+    NSDate *testDepartureDate = [[NSDate init] initWithString:@"2014-04-16 10:00:00 +0000"];
+    [testTrip setDepartureDate:testDepartureDate];
+    
+    XCTAssertEqualObjects(testTrip.DepartureDate, testDepartureDate, @"Departure Date doesn't match");
+    XCTAssertEqualObjects(testTrip.destinationLocation, @"UTC +5", @"Destination Location doesn't match");
+    
 }
 
 @end

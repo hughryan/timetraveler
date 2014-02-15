@@ -38,6 +38,16 @@
                ReferencedContainer = "container:TimeTraveler.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "57722CF418AF06A20025237D"
+               BuildableName = "TimeTraveler Tests.xctest"
+               BlueprintName = "TimeTraveler Tests"
+               ReferencedContainer = "container:TimeTraveler.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
