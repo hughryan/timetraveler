@@ -36,8 +36,8 @@
     NSDate *testDepartureDate = [[NSDate init] initWithString:@"2014-04-16 10:00:00 +0000"];
     [testTrip setDepartureDate:testDepartureDate];
     
-    XCTAssertEqualObjects(testTrip.DepartureDate, testDepartureDate, @"Departure Date doesn't match");
-    XCTAssertEqualObjects(testTrip.destinationLocation, @"UTC +5", @"Destination Location doesn't match");
+    XCTAssertEqualObjects(testTrip.departureDate, testDepartureDate);
+    XCTAssertEqualObjects(testTrip.destinationLocation, @"UTC +6");
     
 }
 
