@@ -21,6 +21,7 @@
 		577F88E9189F60BE00EC9DC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 577F88E7189F60BE00EC9DC3 /* InfoPlist.strings */; };
 		577F88EB189F60BE00EC9DC3 /* TimeTravelerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F88EA189F60BE00EC9DC3 /* TimeTravelerTests.m */; };
 		57AA2B3218A47BC600AD9309 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57AA2B3018A47BC600AD9309 /* Main.storyboard */; };
+		57B88ACA18A6EF9200E3985A /* TimeTravelerDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B88AC918A6EF9200E3985A /* TimeTravelerDataModel.m */; };
 		57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m */; };
 		57E8886718A43EC900428077 /* Recommendations.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886418A43EC900428077 /* Recommendations.m */; };
 		57E8886818A43EC900428077 /* TripDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886618A43EC900428077 /* TripDetails.m */; };
@@ -57,6 +58,8 @@
 		577F88E8189F60BE00EC9DC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		577F88EA189F60BE00EC9DC3 /* TimeTravelerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerTests.m; sourceTree = "<group>"; };
 		57AA2B3118A47BC600AD9309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = TimeTraveler/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		57B88AC818A6EF9200E3985A /* TimeTravelerDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerDataModel.h; sourceTree = "<group>"; };
+		57B88AC918A6EF9200E3985A /* TimeTravelerDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerDataModel.m; sourceTree = "<group>"; };
 		57BD1AAD18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerSettingsTableViewController.h; sourceTree = "<group>"; };
 		57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerSettingsTableViewController.m; sourceTree = "<group>"; };
 		57E8886318A43EC900428077 /* Recommendations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recommendations.h; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 		57E8886218A43EC900428077 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				57B88AC818A6EF9200E3985A /* TimeTravelerDataModel.h */,
+				57B88AC918A6EF9200E3985A /* TimeTravelerDataModel.m */,
 				57E8886318A43EC900428077 /* Recommendations.h */,
 				57E8886418A43EC900428077 /* Recommendations.m */,
 				57E8886518A43EC900428077 /* TripDetails.h */,
@@ -290,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57E8886718A43EC900428077 /* Recommendations.m in Sources */,
+				57B88ACA18A6EF9200E3985A /* TimeTravelerDataModel.m in Sources */,
 				57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsTableViewController.m in Sources */,
 				577F88D0189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m in Sources */,
 				57E8886818A43EC900428077 /* TripDetails.m in Sources */,
