@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 
 @interface TimeTravelerScheduleViewController ()
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end

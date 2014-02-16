@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-155" y="-57"/>
         </scene>
-        <!--Time Traveler Settings Table View Controller-->
+        <!--Time Traveler Settings View Controller-->
         <scene sceneID="wvQ-0y-orZ">
             <objects>
-                <tableViewController id="otg-Ua-aoc" customClass="TimeTravelerSettingsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="otg-Ua-aoc" customClass="TimeTravelerSettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="6dI-rt-Qd2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

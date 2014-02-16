@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimeTravelerSettingsTableViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface TimeTravelerSettingsViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @end

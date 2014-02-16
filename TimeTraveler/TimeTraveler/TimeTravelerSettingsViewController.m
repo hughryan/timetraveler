@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 snowFish. All rights reserved.
 //
 
-#import "TimeTravelerSettingsTableViewController.h"
+#import "TimeTravelerSettingsViewController.h"
 
 #define kPickerCellHeight 200
 
@@ -18,7 +18,7 @@
 
 #define kLocationListDefaultIndex 11
 
-@interface TimeTravelerSettingsTableViewController ()
+@interface TimeTravelerSettingsViewController ()
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSDateFormatter *timeFormatter;
@@ -56,7 +56,7 @@
 
 @end
 
-@implementation TimeTravelerSettingsTableViewController
+@implementation TimeTravelerSettingsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
