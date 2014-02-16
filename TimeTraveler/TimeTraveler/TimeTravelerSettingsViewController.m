@@ -24,11 +24,6 @@
 @property (strong, nonatomic) NSDateFormatter *timeFormatter;
 
 @property (strong, nonatomic) NSArray *locationList;
-@property (strong, nonatomic) NSString *selectedLocation;
-@property (strong, nonatomic) NSDate *selectedDepartureDate;
-@property (strong, nonatomic) NSDate *selectedSleepTime;
-@property (strong, nonatomic) NSDate *selectedWakeTime;
-@property (nonatomic) BOOL selectedNotifications;
 
 @property (assign) BOOL locationPickerIsShowing;
 @property (assign) BOOL departureDatePickerIsShowing;
@@ -85,6 +80,7 @@
     [self setupDepartureDateLabel];
     [self setupSleepLabel];
     [self setupWakeLabel];
+    [self setupNotifications];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -93,20 +89,48 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self closeOtherPickerCells];
+    [self setupLocationLabel];
+    [self setupDepartureDateLabel];
+    [self setupSleepLabel];
+    [self setupWakeLabel];
+    [self setupNotifications];
+}
+
+- (void)setupNotifications
+{
+    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
+    NSNumber *notifications = [tripSettings objectForKey:@"notifications"];
+    self.notificationsSwitch.On = [notifications boolValue];
+}
+
 - (void)setupLocationLabel
 {
-    [self.locationPicker selectRow:kLocationListDefaultIndex inComponent:0 animated:NO];
+    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
+    NSNumber *tempRow = [tripSettings objectForKey:@"destinationLocationRow"];
     
-    self.locationLabel.text = [self.locationList objectAtIndex:kLocationListDefaultIndex];
+    NSNumber *locationRow = [NSNumber numberWithInt:kLocationListDefaultIndex];
+    if (tempRow != nil) locationRow = tempRow;
+    
+    NSInteger defaultLocationRow = [locationRow intValue];
+    
+    [self.locationPicker selectRow:defaultLocationRow inComponent:0 animated:NO];
+    
+    self.locationLabel.text = [self.locationList objectAtIndex:defaultLocationRow];
     self.locationLabel.textColor = [self.tableView tintColor];
     
-    self.selectedLocation = [self.locationList objectAtIndex:kLocationListDefaultIndex];
-
+    self.selectedLocation = [self.locationList objectAtIndex:defaultLocationRow];
 }
 
 - (void)setupDepartureDateLabel
 {
+    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
+    NSDate *tempDepartureDate = [tripSettings objectForKey:@"departureDate"];
+    
     NSDate *defaultDepartureDate = [NSDate date];
+    if (tempDepartureDate != nil && [tempDepartureDate timeIntervalSinceNow] > 0) defaultDepartureDate = tempDepartureDate;
     
     self.departureDateLabel.text = [self.dateFormatter stringFromDate:defaultDepartureDate];
     self.departureDateLabel.textColor = [self.tableView tintColor];
@@ -117,14 +141,18 @@
 
 - (void)setupSleepLabel
 {
-    NSDate *defaultSleepTime = [NSDate date];
+    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
+    NSDate *tempSleepTime = [tripSettings objectForKey:@"sleepTime"];
     
+    NSDate *defaultSleepTime = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
     NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: defaultSleepTime];
     [components setHour: 22];
     [components setMinute: 00];
     [components setSecond: 00];
     defaultSleepTime = [gregorian dateFromComponents: components];
+    
+    if (tempSleepTime != nil) defaultSleepTime = tempSleepTime;
     
     self.sleepTimeLabel.text = [self.timeFormatter stringFromDate:defaultSleepTime];
     self.sleepTimeLabel.textColor = [self.tableView tintColor];
@@ -135,14 +163,18 @@
 
 - (void)setupWakeLabel
 {
-    NSDate *defaultWakeTime = [NSDate date];
+    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
+    NSDate *tempWakeTime = [tripSettings objectForKey:@"wakeTime"];
     
+    NSDate *defaultWakeTime = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
     NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: defaultWakeTime];
     [components setHour: 8];
     [components setMinute: 00];
     [components setSecond: 00];
     defaultWakeTime = [gregorian dateFromComponents: components];
+    
+    if (tempWakeTime != nil) defaultWakeTime = tempWakeTime;
     
     self.wakeTimeLabel.text = [self.timeFormatter stringFromDate:defaultWakeTime];
     self.wakeTimeLabel.textColor = [self.tableView tintColor];
@@ -417,6 +449,7 @@
 {
     self.locationLabel.text = [self.locationList objectAtIndex:row];
     
+    self.selectedLocationRow = [NSNumber numberWithInteger:(NSInteger)row];
     self.selectedLocation = [self.locationList objectAtIndex:row];
     NSLog(@"Location: %@", self.selectedLocation);
 }
@@ -455,14 +488,22 @@
 - (IBAction)notificationsSwitchChanged:(UISwitch *)sender
 {
     
-    self.selectedNotifications = sender.on;
-    NSLog(@"Notifications: %d", self.selectedNotifications);
+    self.selectedNotifications = [NSNumber numberWithBool:sender.on];
+    NSLog(@"Notifications: %d", [self.selectedNotifications boolValue]);
     
 }
 
 - (IBAction)saveButtonPushed:(UIButton *)sender
 {
     NSLog(@"Save Button Pushed");
+    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
+    [tripSettings setObject:self.selectedLocation forKey:@"destinationLocation"];
+    [tripSettings setObject:self.selectedLocationRow forKey:@"destinationLocationRow"];
+    [tripSettings setObject:self.selectedDepartureDate forKey:@"departureDate"];
+    [tripSettings setObject:self.selectedSleepTime forKey:@"sleepTime"];
+    [tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
+    [tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
+    [tripSettings synchronize];
 }
 
 
