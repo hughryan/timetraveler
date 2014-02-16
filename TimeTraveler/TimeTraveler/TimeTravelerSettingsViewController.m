@@ -120,7 +120,6 @@
     [self.locationPicker selectRow:defaultLocationRow inComponent:0 animated:NO];
     
     self.locationLabel.text = [self.locationList objectAtIndex:defaultLocationRow];
-    self.locationLabel.textColor = [self.tableView tintColor];
     
     self.selectedLocation = [self.locationList objectAtIndex:defaultLocationRow];
 }
@@ -134,7 +133,6 @@
     if (tempDepartureDate != nil && [tempDepartureDate timeIntervalSinceNow] > 0) defaultDepartureDate = tempDepartureDate;
     
     self.departureDateLabel.text = [self.dateFormatter stringFromDate:defaultDepartureDate];
-    self.departureDateLabel.textColor = [self.tableView tintColor];
     
     self.selectedDepartureDate = defaultDepartureDate;
     self.departureDatePicker.date = defaultDepartureDate;
@@ -156,7 +154,6 @@
     if (tempSleepTime != nil) defaultSleepTime = tempSleepTime;
     
     self.sleepTimeLabel.text = [self.timeFormatter stringFromDate:defaultSleepTime];
-    self.sleepTimeLabel.textColor = [self.tableView tintColor];
     
     self.selectedSleepTime = defaultSleepTime;
     self.sleepTimePicker.date = defaultSleepTime;
@@ -178,7 +175,6 @@
     if (tempWakeTime != nil) defaultWakeTime = tempWakeTime;
     
     self.wakeTimeLabel.text = [self.timeFormatter stringFromDate:defaultWakeTime];
-    self.wakeTimeLabel.textColor = [self.tableView tintColor];
     
     self.selectedWakeTime = defaultWakeTime;
     self.wakeTimePicker.date = defaultWakeTime;
@@ -300,6 +296,9 @@
         self.departureDatePicker.alpha = 1.0f;
         
     }];
+    
+    self.departureDateLabel.textColor = [self.tableView tintColor];
+
 }
 
 - (void)hideDepatureDatePickerCell
@@ -317,6 +316,9 @@
                      completion:^(BOOL finished){
                          self.departureDatePicker.hidden = YES;
                      }];
+    
+    self.departureDateLabel.textColor = [UIColor blackColor];
+
 }
 
 - (void)showLocationPickerCell
@@ -337,6 +339,8 @@
         self.locationPicker.alpha = 1.0f;
         
     }];
+
+    self.locationLabel.textColor = [self.tableView tintColor];
 }
 
 - (void)hideLocationPickerCell
@@ -354,6 +358,8 @@
                      completion:^(BOOL finished){
                          self.locationPicker.hidden = YES;
                      }];
+    
+    self.locationLabel.textColor = [UIColor blackColor];
 }
 
 - (void)showSleepTimePickerCell
@@ -373,6 +379,8 @@
         self.sleepTimePicker.alpha = 1.0f;
         
     }];
+    
+    self.sleepTimeLabel.textColor = [self.tableView tintColor];
 }
 
 - (void)hideSleepTimePickerCell
@@ -390,6 +398,8 @@
                      completion:^(BOOL finished){
                          self.sleepTimePicker.hidden = YES;
                      }];
+
+    self.sleepTimeLabel.textColor = [UIColor blackColor];
 }
 
 - (void)showWakeTimePickerCell
@@ -409,6 +419,8 @@
         self.wakeTimePicker.alpha = 1.0f;
         
     }];
+    
+    self.wakeTimeLabel.textColor = [self.tableView tintColor];
 }
 
 - (void)hideWakeTimePickerCell
@@ -426,6 +438,8 @@
                      completion:^(BOOL finished){
                          self.wakeTimePicker.hidden = YES;
                      }];
+    
+    self.wakeTimeLabel.textColor = [UIColor blackColor];
 }
 
 - (void)closeOtherPickerCells

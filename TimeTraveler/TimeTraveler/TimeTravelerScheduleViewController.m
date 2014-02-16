@@ -11,6 +11,14 @@
 
 @interface TimeTravelerScheduleViewController ()
 
+@property (strong, nonatomic) NSTimeZone *currentTimeZone;
+@property (strong, nonatomic) NSString *selectedLocation;
+@property (strong, nonatomic) NSNumber *selectedLocationRow;
+@property (strong, nonatomic) NSDate *selectedDepartureDate;
+@property (strong, nonatomic) NSDate *selectedSleepTime;
+@property (strong, nonatomic) NSDate *selectedWakeTime;
+@property (strong, nonatomic) NSNumber *selectedNotifications;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end
@@ -40,6 +48,22 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    //Refresh Data
+    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
+    
+    self.selectedLocation = [tripSettings objectForKey:@"destinationLocation"];
+    self.selectedLocationRow = [tripSettings objectForKey:@"destinationLocationRow"];
+    self.selectedDepartureDate = [tripSettings objectForKey:@"departureDate"];
+    self.selectedSleepTime = [tripSettings objectForKey:@"sleepTime"];
+    self.selectedWakeTime = [tripSettings objectForKey:@"wakeTime"];
+    self.selectedNotifications = [tripSettings objectForKey:@"notifications"];
+    
+    self.currentTimeZone = [NSTimeZone systemTimeZone];
+    
 }
 
 #pragma - Xcode Methods
