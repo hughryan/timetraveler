@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TimeTravelerModel.h"
 
 @interface TimeTravelerSettingsViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
-
+@property (strong, nonatomic) TimeTravelerModel *model;
 @property (strong, nonatomic) NSTimeZone *currentTimeZone;
 @property (strong, nonatomic) NSString *selectedLocation;
 @property (strong, nonatomic) NSNumber *selectedLocationRow;

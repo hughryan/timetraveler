@@ -8,9 +8,11 @@
 
 #import "TimeTravelerScheduleViewController.h"
 #import "SWRevealViewController.h"
+#import "TimeTravelerModel.h"
 
 @interface TimeTravelerScheduleViewController ()
 
+@property (strong, nonatomic) TimeTravelerModel *model;
 @property (strong, nonatomic) NSTimeZone *currentTimeZone;
 @property (strong, nonatomic) NSString *selectedLocation;
 @property (strong, nonatomic) NSNumber *selectedLocationRow;
@@ -43,6 +45,10 @@
     
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
+    
+    self.model = [[TimeTravelerModel alloc] init];
+
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -53,14 +59,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     //Refresh Data
-    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
+   
     
-    self.selectedLocation = [tripSettings objectForKey:@"destinationLocation"];
-    self.selectedLocationRow = [tripSettings objectForKey:@"destinationLocationRow"];
-    self.selectedDepartureDate = [tripSettings objectForKey:@"departureDate"];
-    self.selectedSleepTime = [tripSettings objectForKey:@"sleepTime"];
-    self.selectedWakeTime = [tripSettings objectForKey:@"wakeTime"];
-    self.selectedNotifications = [tripSettings objectForKey:@"notifications"];
+    self.selectedLocation = [self.model.tripSettings objectForKey:@"destinationLocation"];
+    self.selectedLocationRow = [self.model.tripSettings objectForKey:@"destinationLocationRow"];
+    self.selectedDepartureDate = [self.model.tripSettings objectForKey:@"departureDate"];
+    self.selectedSleepTime = [self.model.tripSettings objectForKey:@"sleepTime"];
+    self.selectedWakeTime = [self.model.tripSettings objectForKey:@"wakeTime"];
+    self.selectedNotifications = [self.model.tripSettings objectForKey:@"notifications"];
     
     self.currentTimeZone = [NSTimeZone systemTimeZone];
     

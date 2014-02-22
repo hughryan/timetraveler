@@ -54,14 +54,20 @@
 
 @implementation TimeTravelerSettingsViewController
 
+
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+    
+       
     }
     return self;
 }
+
+
 
 - (void)viewDidLoad
 {
@@ -83,6 +89,9 @@
     [self setupWakeLabel];
     [self setupNotifications];
 
+    self.model = [[TimeTravelerModel alloc] init];
+   
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -102,15 +111,16 @@
 
 - (void)setupNotifications
 {
-    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
-    NSNumber *notifications = [tripSettings objectForKey:@"notifications"];
+
+    NSNumber *notifications = [self.model.tripSettings objectForKey:@"notifications"];
     self.notificationsSwitch.On = [notifications boolValue];
 }
 
 - (void)setupLocationLabel
 {
-    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
-    NSNumber *tempRow = [tripSettings objectForKey:@"destinationLocationRow"];
+   
+   
+    NSNumber *tempRow = [self.model.tripSettings objectForKey:@"destinationLocationRow"];
     
     NSNumber *locationRow = [NSNumber numberWithInt:kLocationListDefaultIndex];
     if (tempRow != nil) locationRow = tempRow;
@@ -126,8 +136,9 @@
 
 - (void)setupDepartureDateLabel
 {
-    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
-    NSDate *tempDepartureDate = [tripSettings objectForKey:@"departureDate"];
+
+
+    NSDate *tempDepartureDate = [self.model.tripSettings objectForKey:@"departureDate"];
     
     NSDate *defaultDepartureDate = [NSDate date];
     if (tempDepartureDate != nil && [tempDepartureDate timeIntervalSinceNow] > 0) defaultDepartureDate = tempDepartureDate;
@@ -140,8 +151,9 @@
 
 - (void)setupSleepLabel
 {
-    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
-    NSDate *tempSleepTime = [tripSettings objectForKey:@"sleepTime"];
+   
+
+    NSDate *tempSleepTime = [self.model.tripSettings objectForKey:@"sleepTime"];
     
     NSDate *defaultSleepTime = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
@@ -161,8 +173,9 @@
 
 - (void)setupWakeLabel
 {
-    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
-    NSDate *tempWakeTime = [tripSettings objectForKey:@"wakeTime"];
+  
+ 
+    NSDate *tempWakeTime = [self.model.tripSettings objectForKey:@"wakeTime"];
     
     NSDate *defaultWakeTime = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
@@ -512,18 +525,19 @@
 {
     NSLog(@"Save Button Pushed");
     
+  
+    
     [NSTimeZone resetSystemTimeZone];
     self.currentTimeZone = [NSTimeZone systemTimeZone];
     NSLog(@"Departure Timezone: %@",[self.currentTimeZone name]);
-    
-    NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
-    [tripSettings setObject:self.selectedLocation forKey:@"destinationLocation"];
-    [tripSettings setObject:self.selectedLocationRow forKey:@"destinationLocationRow"];
-    [tripSettings setObject:self.selectedDepartureDate forKey:@"departureDate"];
-    [tripSettings setObject:self.selectedSleepTime forKey:@"sleepTime"];
-    [tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
-    [tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
-    [tripSettings synchronize];
+   
+    [self.model.tripSettings setObject:self.selectedLocation forKey:@"destinationLocation"];
+    [self.model.tripSettings setObject:self.selectedLocationRow forKey:@"destinationLocationRow"];
+    [self.model.tripSettings setObject:self.selectedDepartureDate forKey:@"departureDate"];
+    [self.model.tripSettings setObject:self.selectedSleepTime forKey:@"sleepTime"];
+    [self.model.tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
+    [self.model.tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
+    [self.model.tripSettings synchronize];
     
     [self.revealViewController revealToggleAnimated:YES];
     

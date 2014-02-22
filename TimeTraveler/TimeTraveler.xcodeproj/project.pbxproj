@@ -23,6 +23,7 @@
 		57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsViewController.m */; };
 		57E8886C18A43FE300428077 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886B18A43FE300428077 /* SWRevealViewController.m */; };
 		57E8886F18A4524A00428077 /* TimeTravelerScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */; };
+		7EAFC90418B84D7100A6C182 /* TimeTravelerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFC90318B84D7100A6C182 /* TimeTravelerModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		57E8886B18A43FE300428077 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerScheduleViewController.h; sourceTree = "<group>"; };
 		57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerScheduleViewController.m; sourceTree = "<group>"; };
+		7EAFC90218B84D7100A6C182 /* TimeTravelerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerModel.h; sourceTree = SOURCE_ROOT; };
+		7EAFC90318B84D7100A6C182 /* TimeTravelerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerModel.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 		57E8886218A43EC900428077 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7EAFC90218B84D7100A6C182 /* TimeTravelerModel.h */,
+				7EAFC90318B84D7100A6C182 /* TimeTravelerModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				577F88CC189F60BE00EC9DC3 /* main.m in Sources */,
 				57E8886C18A43FE300428077 /* SWRevealViewController.m in Sources */,
 				57E8886F18A4524A00428077 /* TimeTravelerScheduleViewController.m in Sources */,
+				7EAFC90418B84D7100A6C182 /* TimeTravelerModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
