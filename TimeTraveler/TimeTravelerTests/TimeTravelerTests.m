@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "TripDetails.h"
+#import "TimeTravelerSettingsViewController.h"
 
 @interface TimeTravelerTests : XCTestCase
 
@@ -27,18 +27,58 @@
     [super tearDown];
 }
 
+
+//integration test for saving trip data at once
 - (void)testBasicTrip
 {
-    TripDetails *testTrip = [[TripDetails alloc] init];
+    NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
     
-    [testTrip setDestinationLocation:@"UTC +5"];
+    NSDate *tempDepDay = [tripSettings objectForKey:@"departureDate"];
+    NSDate *tempSleepTime = [tripSettings objectForKey:@"sleepTime"];
+    NSDate *tempWakeTime = [tripSettings objectForKey:@"wakeTime"];
+    NSNumber *tempNotification = [tripSettings objectForKey:@"notifications"];
+    NSTimeZone *tempTimeZone = [NSTimeZone localTimeZone];
     
-    NSDate *testDepartureDate = [[NSDate init] initWithString:@"2014-04-16 10:00:00 +0000"];
-    [testTrip setDepartureDate:testDepartureDate];
-    
-    //XCTAssertEqualObjects(testTrip.departureDate, testDepartureDate, @"Departure Date doesn't match");
-    //XCTAssertEqualObjects(testTrip.destinationLocation, @"UTC +5", @"Destination Location doesn't match");
-    
+    XCTAssertNotNil(tempTimeZone);
+    XCTAssertNotNil(tempDepDay);
+    XCTAssertNotNil(tempSleepTime);
+    XCTAssertNotNil(tempWakeTime);
+    XCTAssertNotNil(tempNotification);
 }
+
+- (void)testTimeZone
+{
+    NSTimeZone *tempTimeZone = [NSTimeZone localTimeZone];
+    XCTAssertNotNil(tempTimeZone);
+}
+
+
+- (void) testDeparture
+{
+    NSTimeZone *tempTimeZone = [NSTimeZone localTimeZone];
+    XCTAssertNotNil(tempTimeZone);
+}
+
+- (void)testSleep
+{
+    NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
+    NSDate *tempSleepTime = [tripSettings objectForKey:@"sleepTime"];
+    XCTAssertNotNil(tempSleepTime, @"Basic trip has Failed");
+}
+
+- (void)testWake
+{
+    NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
+    NSDate *tempWakeTime = [tripSettings objectForKey:@"wakeTime"];
+    XCTAssertNotNil(tempWakeTime, @"Wake test Failed");
+}
+
+- (void)testNotificationsButton
+{
+    NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
+    NSNumber *tempNotification = [tripSettings objectForKey:@"notifications"];
+    XCTAssertNotNil(tempNotification, @"Notifications has failed");
+}
+
 
 @end
