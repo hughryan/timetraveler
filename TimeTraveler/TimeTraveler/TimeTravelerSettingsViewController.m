@@ -112,15 +112,15 @@
 - (void)setupNotifications
 {
 
-    NSNumber *notifications = [self.model.tripSettings objectForKey:@"notifications"];
-    self.notificationsSwitch.On = [notifications boolValue];
+
+    self.notificationsSwitch.On = [self.model.selectedNotifications boolValue];
 }
 
 - (void)setupLocationLabel
 {
    
    
-    NSNumber *tempRow = [self.model.tripSettings objectForKey:@"destinationLocationRow"];
+    NSNumber *tempRow = self.model.selectedLocationRow;
     
     NSNumber *locationRow = [NSNumber numberWithInt:kLocationListDefaultIndex];
     if (tempRow != nil) locationRow = tempRow;
@@ -131,21 +131,21 @@
     
     self.locationLabel.text = [self.locationList objectAtIndex:defaultLocationRow];
     
-    self.selectedLocation = [self.locationList objectAtIndex:defaultLocationRow];
+    self.model.selectedLocation = [self.locationList objectAtIndex:defaultLocationRow];
 }
 
 - (void)setupDepartureDateLabel
 {
 
 
-    NSDate *tempDepartureDate = [self.model.tripSettings objectForKey:@"departureDate"];
+    NSDate *tempDepartureDate = self.model.selectedDepartureDate;
     
     NSDate *defaultDepartureDate = [NSDate date];
     if (tempDepartureDate != nil && [tempDepartureDate timeIntervalSinceNow] > 0) defaultDepartureDate = tempDepartureDate;
     
     self.departureDateLabel.text = [self.dateFormatter stringFromDate:defaultDepartureDate];
     
-    self.selectedDepartureDate = defaultDepartureDate;
+    self.model.selectedDepartureDate = defaultDepartureDate;
     self.departureDatePicker.date = defaultDepartureDate;
 }
 
@@ -153,7 +153,7 @@
 {
    
 
-    NSDate *tempSleepTime = [self.model.tripSettings objectForKey:@"sleepTime"];
+    NSDate *tempSleepTime = self.model.selectedSleepTime;
     
     NSDate *defaultSleepTime = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
@@ -167,7 +167,7 @@
     
     self.sleepTimeLabel.text = [self.timeFormatter stringFromDate:defaultSleepTime];
     
-    self.selectedSleepTime = defaultSleepTime;
+    self.model.selectedSleepTime = defaultSleepTime;
     self.sleepTimePicker.date = defaultSleepTime;
 }
 
@@ -175,7 +175,7 @@
 {
   
  
-    NSDate *tempWakeTime = [self.model.tripSettings objectForKey:@"wakeTime"];
+    NSDate *tempWakeTime = self.model.selectedWakeTime;
     
     NSDate *defaultWakeTime = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
@@ -189,7 +189,7 @@
     
     self.wakeTimeLabel.text = [self.timeFormatter stringFromDate:defaultWakeTime];
     
-    self.selectedWakeTime = defaultWakeTime;
+    self.model.selectedWakeTime = defaultWakeTime;
     self.wakeTimePicker.date = defaultWakeTime;
 }
 
@@ -477,9 +477,9 @@
 {
     self.locationLabel.text = [self.locationList objectAtIndex:row];
     
-    self.selectedLocationRow = [NSNumber numberWithInteger:(NSInteger)row];
-    self.selectedLocation = [self.locationList objectAtIndex:row];
-    NSLog(@"Location: %@", self.selectedLocation);
+    self.model.selectedLocationRow = [NSNumber numberWithInteger:(NSInteger)row];
+    self.model.selectedLocation = [self.locationList objectAtIndex:row];
+    NSLog(@"Location: %@", self.model.selectedLocation);
 }
 
 - (IBAction)departureDatePickerChanged:(UIDatePicker *)sender
@@ -491,8 +491,8 @@
     
     self.departureDateLabel.text =  [self.dateFormatter stringFromDate:sender.date];
     
-    self.selectedDepartureDate = sender.date;
-    NSLog(@"Departure Date: %@", self.selectedDepartureDate);
+    self.model.selectedDepartureDate = sender.date;
+    NSLog(@"Departure Date: %@", self.model.selectedDepartureDate);
 }
 
 - (IBAction)sleepTimePickerChanged:(UIDatePicker *)sender
@@ -500,8 +500,8 @@
     
     self.sleepTimeLabel.text =  [self.timeFormatter stringFromDate:sender.date];
     
-    self.selectedSleepTime = sender.date;
-    NSLog(@"Sleep Time: %@", self.selectedSleepTime);
+    self.model.selectedSleepTime = sender.date;
+    NSLog(@"Sleep Time: %@", self.model.selectedSleepTime);
 }
 
 - (IBAction)wakeTimePickerChanged:(UIDatePicker *)sender
@@ -509,15 +509,15 @@
     
     self.wakeTimeLabel.text =  [self.timeFormatter stringFromDate:sender.date];
     
-    self.selectedWakeTime = sender.date;
-    NSLog(@"Wake Time: %@", self.selectedWakeTime);
+    self.model.selectedWakeTime = sender.date;
+    NSLog(@"Wake Time: %@", self.model.selectedWakeTime);
 }
 
 - (IBAction)notificationsSwitchChanged:(UISwitch *)sender
 {
     
-    self.selectedNotifications = [NSNumber numberWithBool:sender.on];
-    NSLog(@"Notifications: %d", [self.selectedNotifications boolValue]);
+    self.model.selectedNotifications = [NSNumber numberWithBool:sender.on];
+    NSLog(@"Notifications: %d", [self.model.selectedNotifications boolValue]);
     
 }
 
@@ -526,7 +526,10 @@
     NSLog(@"Save Button Pushed");
     
   
+    [self.model saved];
     
+    
+    /*
     [NSTimeZone resetSystemTimeZone];
     self.currentTimeZone = [NSTimeZone systemTimeZone];
     NSLog(@"Departure Timezone: %@",[self.currentTimeZone name]);
@@ -538,6 +541,8 @@
     [self.model.tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
     [self.model.tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
     [self.model.tripSettings synchronize];
+    */
+    
     
     [self.revealViewController revealToggleAnimated:YES];
     

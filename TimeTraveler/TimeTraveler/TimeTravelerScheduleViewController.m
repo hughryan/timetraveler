@@ -13,13 +13,6 @@
 @interface TimeTravelerScheduleViewController ()
 
 @property (strong, nonatomic) TimeTravelerModel *model;
-@property (strong, nonatomic) NSTimeZone *currentTimeZone;
-@property (strong, nonatomic) NSString *selectedLocation;
-@property (strong, nonatomic) NSNumber *selectedLocationRow;
-@property (strong, nonatomic) NSDate *selectedDepartureDate;
-@property (strong, nonatomic) NSDate *selectedSleepTime;
-@property (strong, nonatomic) NSDate *selectedWakeTime;
-@property (strong, nonatomic) NSNumber *selectedNotifications;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
@@ -61,14 +54,7 @@
     //Refresh Data
    
     
-    self.selectedLocation = [self.model.tripSettings objectForKey:@"destinationLocation"];
-    self.selectedLocationRow = [self.model.tripSettings objectForKey:@"destinationLocationRow"];
-    self.selectedDepartureDate = [self.model.tripSettings objectForKey:@"departureDate"];
-    self.selectedSleepTime = [self.model.tripSettings objectForKey:@"sleepTime"];
-    self.selectedWakeTime = [self.model.tripSettings objectForKey:@"wakeTime"];
-    self.selectedNotifications = [self.model.tripSettings objectForKey:@"notifications"];
-    
-    self.currentTimeZone = [NSTimeZone systemTimeZone];
+ 
     
 }
 
