@@ -8,8 +8,19 @@
 
 #import "TimeTravelerScheduleViewController.h"
 #import "SWRevealViewController.h"
+#import "TimeTravelerModel.h"
 
 @interface TimeTravelerScheduleViewController ()
+
+@property (strong, nonatomic) TimeTravelerModel *model;
+@property (strong, nonatomic) NSTimeZone *currentTimeZone;
+@property (strong, nonatomic) NSString *selectedLocation;
+@property (strong, nonatomic) NSNumber *selectedLocationRow;
+@property (strong, nonatomic) NSDate *selectedDepartureDate;
+@property (strong, nonatomic) NSDate *selectedSleepTime;
+@property (strong, nonatomic) NSDate *selectedWakeTime;
+@property (strong, nonatomic) NSNumber *selectedNotifications;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end
@@ -34,11 +45,31 @@
     
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
+    
+    self.model = [[TimeTravelerModel alloc] init];
+
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    //Refresh Data
+   
+    
+    self.selectedLocation = [self.model.tripSettings objectForKey:@"destinationLocation"];
+    self.selectedLocationRow = [self.model.tripSettings objectForKey:@"destinationLocationRow"];
+    self.selectedDepartureDate = [self.model.tripSettings objectForKey:@"departureDate"];
+    self.selectedSleepTime = [self.model.tripSettings objectForKey:@"sleepTime"];
+    self.selectedWakeTime = [self.model.tripSettings objectForKey:@"wakeTime"];
+    self.selectedNotifications = [self.model.tripSettings objectForKey:@"notifications"];
+    
+    self.currentTimeZone = [NSTimeZone systemTimeZone];
+    
 }
 
 #pragma - Xcode Methods
