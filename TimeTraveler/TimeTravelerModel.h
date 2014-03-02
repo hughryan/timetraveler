@@ -18,6 +18,9 @@
 @property (strong, nonatomic) NSDate *selectedWakeTime;
 @property (strong, nonatomic) NSNumber *selectedNotifications;
 
+@property (strong, nonatomic) NSMutableArray *wakeScheduleArray;
+@property (strong, nonatomic) NSMutableArray *sleepScheduleArray;
+
 - (id)init;
 - (void)update;
 - (void)save;
