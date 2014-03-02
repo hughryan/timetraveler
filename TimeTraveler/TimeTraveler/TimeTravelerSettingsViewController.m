@@ -81,7 +81,7 @@
     [self.timeFormatter setDateStyle:NSDateFormatterNoStyle];
     [self.timeFormatter setTimeStyle:NSDateFormatterShortStyle];
     
-    self.locationList = [[NSArray alloc] initWithObjects:@"UTC -11",@"UTC -10", @"UTC -9", @"UTC -8", @"UTC -7", @"UTC -6", @"UTC -5", @"UTC -4", @"UTC -3", @"UTC -2", @"UTC -1", @"UTC +0", @"UTC +1", @"UTC +2", @"UTC +3", @"UTC +4", @"UTC +5", @"UTC +6", @"UTC +7", @"UTC +8", @"UTC +9", @"UTC +10", @"UTC +11", @"UTC +12", nil];
+    self.locationList = [[NSArray alloc] initWithObjects:@"GMT-11:00",@"GMT-10:00", @"GMT-09:00", @"GMT-08:00", @"GMT-07:00", @"GMT-06:00", @"GMT-05:00", @"GMT-04:00", @"GMT-03:00", @"GMT-02:00", @"GMT-01:00", @"GMT+00:00", @"GMT+01:00", @"GMT+02:00", @"GMT+03:00", @"GMT+04:00", @"GMT+05:00", @"GMT+06:00", @"GMT+07:00", @"GMT+08:00", @"GMT+09:00", @"GMT+10:00", @"GMT+11:00", @"GMT+12:00", nil];
     
     [self setupLocationLabel];
     [self setupDepartureDateLabel];
@@ -528,7 +528,7 @@
   
     [self.model saved];
     
-    
+    [self.model calculateTimeZoneDifference];
     /*
     [NSTimeZone resetSystemTimeZone];
     self.currentTimeZone = [NSTimeZone systemTimeZone];

@@ -21,7 +21,7 @@
 
 
 -(id)init;
-
+-(long) calculateTimeZoneDifference;
 -(void) saved;
 
 
