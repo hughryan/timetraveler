@@ -524,6 +524,22 @@
     
     [self.model save];
     
+    [self.model calculateTimeZoneDifference];
+    /*
+    [NSTimeZone resetSystemTimeZone];
+    self.currentTimeZone = [NSTimeZone systemTimeZone];
+    NSLog(@"Departure Timezone: %@",[self.currentTimeZone name]);
+   
+    [self.model.tripSettings setObject:self.selectedLocation forKey:@"destinationLocation"];
+    [self.model.tripSettings setObject:self.selectedLocationRow forKey:@"destinationLocationRow"];
+    [self.model.tripSettings setObject:self.selectedDepartureDate forKey:@"departureDate"];
+    [self.model.tripSettings setObject:self.selectedSleepTime forKey:@"sleepTime"];
+    [self.model.tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
+    [self.model.tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
+    [self.model.tripSettings synchronize];
+    */
+    
+    
     [self.revealViewController revealToggleAnimated:YES];
     
 }

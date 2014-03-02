@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "TimeTravelerSettingsViewController.h"
+#import "TimeTravelerModel.h"
 
 @interface TimeTravelerTests : XCTestCase
 
@@ -27,10 +28,28 @@
     [super tearDown];
 }
 
+void setData()
+{
+    TimeTravelerModel *ttm;
+    
+    NSDate *currDate = [NSDate date];
+    NSNumber *notifications =@(1);
+    NSDate *currSleepTime = [NSDate date];
+    NSDate *deptDate = [NSDate date];
+    
+    ttm.selectedWakeTime = currDate;
+    ttm.selectedNotifications = notifications;
+    ttm.selectedSleepTime = currSleepTime;
+    ttm.selectedDepartureDate = deptDate;
+    
+    [ttm save];
+}
+
 
 //integration test for saving trip data at once
 - (void)testBasicTrip
 {
+    setData();
     NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
     
     NSDate *tempDepDay = [tripSettings objectForKey:@"departureDate"];
@@ -78,6 +97,27 @@
     NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
     NSNumber *tempNotification = [tripSettings objectForKey:@"notifications"];
     XCTAssertNotNil(tempNotification, @"Notifications has failed");
+}
+
+- (void) goingEastLessThanTwelve
+{
+    NSUserDefaults * tripSettings = [[NSUserDefaults alloc] init];
+    long result = 0;
+    //result = TimeTravelerModel.CalculateTimeZoneDifference;
+}
+
+- (void) goingEastGreaterThanOrEqualTwelve
+{
+    
+}
+
+- (void) goingWestLessThanTwelve
+{
+    
+}
+
+- (void) goingWestGreaterThanOrEqualTwelve
+{
 }
 
 
