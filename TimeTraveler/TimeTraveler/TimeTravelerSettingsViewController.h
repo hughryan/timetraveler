@@ -10,7 +10,7 @@
 #import "TimeTravelerModel.h"
 
 @interface TimeTravelerSettingsViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
-@property (strong, nonatomic) TimeTravelerModel *model;
 
+@property (strong, nonatomic) TimeTravelerModel *model;
 
 @end

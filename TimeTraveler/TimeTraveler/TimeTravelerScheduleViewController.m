@@ -12,14 +12,13 @@
 
 @interface TimeTravelerScheduleViewController ()
 
-@property (strong, nonatomic) TimeTravelerModel *model;
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end
 
 @implementation TimeTravelerScheduleViewController
 
+/*
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -28,6 +27,7 @@
     }
     return self;
 }
+ */
 
 - (void)viewDidLoad
 {
@@ -52,7 +52,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     //Refresh Data
-   
+    [self.model update];
     
  
     

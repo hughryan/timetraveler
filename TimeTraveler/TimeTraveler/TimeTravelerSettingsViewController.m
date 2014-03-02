@@ -54,8 +54,7 @@
 
 @implementation TimeTravelerSettingsViewController
 
-
-
+/*
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -66,7 +65,7 @@
     }
     return self;
 }
-
+*/
 
 
 - (void)viewDidLoad
@@ -83,13 +82,13 @@
     
     self.locationList = [[NSArray alloc] initWithObjects:@"UTC -11",@"UTC -10", @"UTC -9", @"UTC -8", @"UTC -7", @"UTC -6", @"UTC -5", @"UTC -4", @"UTC -3", @"UTC -2", @"UTC -1", @"UTC +0", @"UTC +1", @"UTC +2", @"UTC +3", @"UTC +4", @"UTC +5", @"UTC +6", @"UTC +7", @"UTC +8", @"UTC +9", @"UTC +10", @"UTC +11", @"UTC +12", nil];
     
+    self.model = [[TimeTravelerModel alloc] init];
+    
     [self setupLocationLabel];
     [self setupDepartureDateLabel];
     [self setupSleepLabel];
     [self setupWakeLabel];
     [self setupNotifications];
-
-    self.model = [[TimeTravelerModel alloc] init];
    
 
     // Uncomment the following line to preserve selection between presentations.
@@ -112,13 +111,11 @@
 - (void)setupNotifications
 {
 
-
     self.notificationsSwitch.On = [self.model.selectedNotifications boolValue];
 }
 
 - (void)setupLocationLabel
 {
-   
    
     NSNumber *tempRow = self.model.selectedLocationRow;
     
@@ -525,24 +522,7 @@
 {
     NSLog(@"Save Button Pushed");
     
-  
-    [self.model saved];
-    
-    
-    /*
-    [NSTimeZone resetSystemTimeZone];
-    self.currentTimeZone = [NSTimeZone systemTimeZone];
-    NSLog(@"Departure Timezone: %@",[self.currentTimeZone name]);
-   
-    [self.model.tripSettings setObject:self.selectedLocation forKey:@"destinationLocation"];
-    [self.model.tripSettings setObject:self.selectedLocationRow forKey:@"destinationLocationRow"];
-    [self.model.tripSettings setObject:self.selectedDepartureDate forKey:@"departureDate"];
-    [self.model.tripSettings setObject:self.selectedSleepTime forKey:@"sleepTime"];
-    [self.model.tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
-    [self.model.tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
-    [self.model.tripSettings synchronize];
-    */
-    
+    [self.model save];
     
     [self.revealViewController revealToggleAnimated:YES];
     
