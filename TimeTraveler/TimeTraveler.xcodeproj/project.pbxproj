@@ -121,10 +121,10 @@
 		577F88C5189F60BE00EC9DC3 /* TimeTraveler */ = {
 			isa = PBXGroup;
 			children = (
+				57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */,
 				577F88CE189F60BE00EC9DC3 /* TimeTravelerAppDelegate.h */,
 				577F88CF189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m */,
 				57AA2B3018A47BC600AD9309 /* Main.storyboard */,
-				57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */,
 				57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */,
 				57BD1AAD18A05D0F009A0567 /* TimeTravelerSettingsViewController.h */,
 				57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsViewController.m */,
