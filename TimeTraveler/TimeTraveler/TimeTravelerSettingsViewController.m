@@ -54,20 +54,6 @@
 
 @implementation TimeTravelerSettingsViewController
 
-/*
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    
-       
-    }
-    return self;
-}
-*/
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -90,12 +76,6 @@
     [self setupWakeLabel];
     [self setupNotifications];
    
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -524,22 +504,6 @@
     
     [self.model save];
     
-    [self.model calculateTimeZoneDifference];
-    /*
-    [NSTimeZone resetSystemTimeZone];
-    self.currentTimeZone = [NSTimeZone systemTimeZone];
-    NSLog(@"Departure Timezone: %@",[self.currentTimeZone name]);
-   
-    [self.model.tripSettings setObject:self.selectedLocation forKey:@"destinationLocation"];
-    [self.model.tripSettings setObject:self.selectedLocationRow forKey:@"destinationLocationRow"];
-    [self.model.tripSettings setObject:self.selectedDepartureDate forKey:@"departureDate"];
-    [self.model.tripSettings setObject:self.selectedSleepTime forKey:@"sleepTime"];
-    [self.model.tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
-    [self.model.tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
-    [self.model.tripSettings synchronize];
-    */
-    
-    
     [self.revealViewController revealToggleAnimated:YES];
     
 }
@@ -548,9 +512,6 @@
 {
     if (indexPath.section == 3) {
         cell.backgroundColor = [UIColor clearColor];
-    } else {
-        //tableView.separatorColor = [UIColor grayColor];
-        //cell.backgroundColor = [UIColor grayColor];
     }
 }
 
