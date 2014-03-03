@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TimeTravelerModel.h"
 
 @interface TimeTravelerScheduleViewController : UITableViewController
+
+@property (strong, nonatomic) TimeTravelerModel *model;
 
 @end

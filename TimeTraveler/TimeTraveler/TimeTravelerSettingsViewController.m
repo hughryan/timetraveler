@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 snowFish. All rights reserved.
 //
 
-#import "TimeTravelerSettingsTableViewController.h"
+#import "TimeTravelerSettingsViewController.h"
+#import "SWRevealViewController.h"
 
 #define kPickerCellHeight 200
 
@@ -18,17 +19,12 @@
 
 #define kLocationListDefaultIndex 11
 
-@interface TimeTravelerSettingsTableViewController ()
+@interface TimeTravelerSettingsViewController ()
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSDateFormatter *timeFormatter;
 
 @property (strong, nonatomic) NSArray *locationList;
-@property (strong, nonatomic) NSString *selectedLocation;
-@property (strong, nonatomic) NSDate *selectedDepartureDate;
-@property (strong, nonatomic) NSDate *selectedSleepTime;
-@property (strong, nonatomic) NSDate *selectedWakeTime;
-@property (nonatomic) BOOL selectedNotifications;
 
 @property (assign) BOOL locationPickerIsShowing;
 @property (assign) BOOL departureDatePickerIsShowing;
@@ -56,16 +52,21 @@
 
 @end
 
-@implementation TimeTravelerSettingsTableViewController
+@implementation TimeTravelerSettingsViewController
+
+/*
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+    
+       
     }
     return self;
 }
+*/
+
 
 - (void)viewDidLoad
 {
@@ -79,12 +80,16 @@
     [self.timeFormatter setDateStyle:NSDateFormatterNoStyle];
     [self.timeFormatter setTimeStyle:NSDateFormatterShortStyle];
     
-    self.locationList = [[NSArray alloc] initWithObjects:@"UTC -11",@"UTC -10", @"UTC -9", @"UTC -8", @"UTC -7", @"UTC -6", @"UTC -5", @"UTC -4", @"UTC -3", @"UTC -2", @"UTC -1", @"UTC +0", @"UTC +1", @"UTC +2", @"UTC +3", @"UTC +4", @"UTC +5", @"UTC +6", @"UTC +7", @"UTC +8", @"UTC +9", @"UTC +10", @"UTC +11", @"UTC +12", nil];
+    self.locationList = [[NSArray alloc] initWithObjects:@"GMT-11:00",@"GMT-10:00", @"GMT-09:00", @"GMT-08:00", @"GMT-07:00", @"GMT-06:00", @"GMT-05:00", @"GMT-04:00", @"GMT-03:00", @"GMT-02:00", @"GMT-01:00", @"GMT+00:00", @"GMT+01:00", @"GMT+02:00", @"GMT+03:00", @"GMT+04:00", @"GMT+05:00", @"GMT+06:00", @"GMT+07:00", @"GMT+08:00", @"GMT+09:00", @"GMT+10:00", @"GMT+11:00", @"GMT+12:00", nil];
+    
+    self.model = [[TimeTravelerModel alloc] init];
     
     [self setupLocationLabel];
     [self setupDepartureDateLabel];
     [self setupSleepLabel];
     [self setupWakeLabel];
+    [self setupNotifications];
+   
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -93,32 +98,61 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self closeOtherPickerCells];
+    [self setupLocationLabel];
+    [self setupDepartureDateLabel];
+    [self setupSleepLabel];
+    [self setupWakeLabel];
+    [self setupNotifications];
+}
+
+- (void)setupNotifications
+{
+
+    self.notificationsSwitch.On = [self.model.selectedNotifications boolValue];
+}
+
 - (void)setupLocationLabel
 {
-    [self.locationPicker selectRow:kLocationListDefaultIndex inComponent:0 animated:NO];
+   
+    NSNumber *tempRow = self.model.selectedLocationRow;
     
-    self.locationLabel.text = [self.locationList objectAtIndex:kLocationListDefaultIndex];
-    self.locationLabel.textColor = [self.tableView tintColor];
+    NSNumber *locationRow = [NSNumber numberWithInt:kLocationListDefaultIndex];
+    if (tempRow != nil) locationRow = tempRow;
     
-    self.selectedLocation = [self.locationList objectAtIndex:kLocationListDefaultIndex];
-
+    NSInteger defaultLocationRow = [locationRow intValue];
+    
+    [self.locationPicker selectRow:defaultLocationRow inComponent:0 animated:NO];
+    
+    self.locationLabel.text = [self.locationList objectAtIndex:defaultLocationRow];
+    
+    self.model.selectedLocation = [self.locationList objectAtIndex:defaultLocationRow];
 }
 
 - (void)setupDepartureDateLabel
 {
+
+
+    NSDate *tempDepartureDate = self.model.selectedDepartureDate;
+    
     NSDate *defaultDepartureDate = [NSDate date];
+    if (tempDepartureDate != nil && [tempDepartureDate timeIntervalSinceNow] > 0) defaultDepartureDate = tempDepartureDate;
     
     self.departureDateLabel.text = [self.dateFormatter stringFromDate:defaultDepartureDate];
-    self.departureDateLabel.textColor = [self.tableView tintColor];
     
-    self.selectedDepartureDate = defaultDepartureDate;
+    self.model.selectedDepartureDate = defaultDepartureDate;
     self.departureDatePicker.date = defaultDepartureDate;
 }
 
 - (void)setupSleepLabel
 {
-    NSDate *defaultSleepTime = [NSDate date];
+   
+
+    NSDate *tempSleepTime = self.model.selectedSleepTime;
     
+    NSDate *defaultSleepTime = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
     NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: defaultSleepTime];
     [components setHour: 22];
@@ -126,17 +160,21 @@
     [components setSecond: 00];
     defaultSleepTime = [gregorian dateFromComponents: components];
     
-    self.sleepTimeLabel.text = [self.timeFormatter stringFromDate:defaultSleepTime];
-    self.sleepTimeLabel.textColor = [self.tableView tintColor];
+    if (tempSleepTime != nil) defaultSleepTime = tempSleepTime;
     
-    self.selectedSleepTime = defaultSleepTime;
+    self.sleepTimeLabel.text = [self.timeFormatter stringFromDate:defaultSleepTime];
+    
+    self.model.selectedSleepTime = defaultSleepTime;
     self.sleepTimePicker.date = defaultSleepTime;
 }
 
 - (void)setupWakeLabel
 {
-    NSDate *defaultWakeTime = [NSDate date];
+  
+ 
+    NSDate *tempWakeTime = self.model.selectedWakeTime;
     
+    NSDate *defaultWakeTime = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
     NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: defaultWakeTime];
     [components setHour: 8];
@@ -144,10 +182,11 @@
     [components setSecond: 00];
     defaultWakeTime = [gregorian dateFromComponents: components];
     
-    self.wakeTimeLabel.text = [self.timeFormatter stringFromDate:defaultWakeTime];
-    self.wakeTimeLabel.textColor = [self.tableView tintColor];
+    if (tempWakeTime != nil) defaultWakeTime = tempWakeTime;
     
-    self.selectedWakeTime = defaultWakeTime;
+    self.wakeTimeLabel.text = [self.timeFormatter stringFromDate:defaultWakeTime];
+    
+    self.model.selectedWakeTime = defaultWakeTime;
     self.wakeTimePicker.date = defaultWakeTime;
 }
 
@@ -267,6 +306,9 @@
         self.departureDatePicker.alpha = 1.0f;
         
     }];
+    
+    self.departureDateLabel.textColor = [self.tableView tintColor];
+
 }
 
 - (void)hideDepatureDatePickerCell
@@ -284,6 +326,9 @@
                      completion:^(BOOL finished){
                          self.departureDatePicker.hidden = YES;
                      }];
+    
+    self.departureDateLabel.textColor = [UIColor blackColor];
+
 }
 
 - (void)showLocationPickerCell
@@ -304,6 +349,8 @@
         self.locationPicker.alpha = 1.0f;
         
     }];
+
+    self.locationLabel.textColor = [self.tableView tintColor];
 }
 
 - (void)hideLocationPickerCell
@@ -321,6 +368,8 @@
                      completion:^(BOOL finished){
                          self.locationPicker.hidden = YES;
                      }];
+    
+    self.locationLabel.textColor = [UIColor blackColor];
 }
 
 - (void)showSleepTimePickerCell
@@ -340,6 +389,8 @@
         self.sleepTimePicker.alpha = 1.0f;
         
     }];
+    
+    self.sleepTimeLabel.textColor = [self.tableView tintColor];
 }
 
 - (void)hideSleepTimePickerCell
@@ -357,6 +408,8 @@
                      completion:^(BOOL finished){
                          self.sleepTimePicker.hidden = YES;
                      }];
+
+    self.sleepTimeLabel.textColor = [UIColor blackColor];
 }
 
 - (void)showWakeTimePickerCell
@@ -376,6 +429,8 @@
         self.wakeTimePicker.alpha = 1.0f;
         
     }];
+    
+    self.wakeTimeLabel.textColor = [self.tableView tintColor];
 }
 
 - (void)hideWakeTimePickerCell
@@ -393,6 +448,8 @@
                      completion:^(BOOL finished){
                          self.wakeTimePicker.hidden = YES;
                      }];
+    
+    self.wakeTimeLabel.textColor = [UIColor blackColor];
 }
 
 - (void)closeOtherPickerCells
@@ -417,8 +474,9 @@
 {
     self.locationLabel.text = [self.locationList objectAtIndex:row];
     
-    self.selectedLocation = [self.locationList objectAtIndex:row];
-    NSLog(@"Location: %@", self.selectedLocation);
+    self.model.selectedLocationRow = [NSNumber numberWithInteger:(NSInteger)row];
+    self.model.selectedLocation = [self.locationList objectAtIndex:row];
+    NSLog(@"Location: %@", self.model.selectedLocation);
 }
 
 - (IBAction)departureDatePickerChanged:(UIDatePicker *)sender
@@ -430,8 +488,8 @@
     
     self.departureDateLabel.text =  [self.dateFormatter stringFromDate:sender.date];
     
-    self.selectedDepartureDate = sender.date;
-    NSLog(@"Departure Date: %@", self.selectedDepartureDate);
+    self.model.selectedDepartureDate = sender.date;
+    NSLog(@"Departure Date: %@", self.model.selectedDepartureDate);
 }
 
 - (IBAction)sleepTimePickerChanged:(UIDatePicker *)sender
@@ -439,8 +497,8 @@
     
     self.sleepTimeLabel.text =  [self.timeFormatter stringFromDate:sender.date];
     
-    self.selectedSleepTime = sender.date;
-    NSLog(@"Sleep Time: %@", self.selectedSleepTime);
+    self.model.selectedSleepTime = sender.date;
+    NSLog(@"Sleep Time: %@", self.model.selectedSleepTime);
 }
 
 - (IBAction)wakeTimePickerChanged:(UIDatePicker *)sender
@@ -448,81 +506,52 @@
     
     self.wakeTimeLabel.text =  [self.timeFormatter stringFromDate:sender.date];
     
-    self.selectedWakeTime = sender.date;
-    NSLog(@"Wake Time: %@", self.selectedWakeTime);
+    self.model.selectedWakeTime = sender.date;
+    NSLog(@"Wake Time: %@", self.model.selectedWakeTime);
 }
 
 - (IBAction)notificationsSwitchChanged:(UISwitch *)sender
 {
     
-    self.selectedNotifications = sender.on;
-    NSLog(@"Notifications: %d", self.selectedNotifications);
+    self.model.selectedNotifications = [NSNumber numberWithBool:sender.on];
+    NSLog(@"Notifications: %d", [self.model.selectedNotifications boolValue]);
     
 }
 
 - (IBAction)saveButtonPushed:(UIButton *)sender
 {
     NSLog(@"Save Button Pushed");
+    
+    [self.model save];
+    
+    [self.model calculateTimeZoneDifference];
+    /*
+    [NSTimeZone resetSystemTimeZone];
+    self.currentTimeZone = [NSTimeZone systemTimeZone];
+    NSLog(@"Departure Timezone: %@",[self.currentTimeZone name]);
+   
+    [self.model.tripSettings setObject:self.selectedLocation forKey:@"destinationLocation"];
+    [self.model.tripSettings setObject:self.selectedLocationRow forKey:@"destinationLocationRow"];
+    [self.model.tripSettings setObject:self.selectedDepartureDate forKey:@"departureDate"];
+    [self.model.tripSettings setObject:self.selectedSleepTime forKey:@"sleepTime"];
+    [self.model.tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
+    [self.model.tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
+    [self.model.tripSettings synchronize];
+    */
+    
+    
+    [self.revealViewController revealToggleAnimated:YES];
+    
 }
 
-
-#pragma mark - Xcode methods
-
-- (void)didReceiveMemoryWarning
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (indexPath.section == 3) {
+        cell.backgroundColor = [UIColor clearColor];
+    } else {
+        //tableView.separatorColor = [UIColor grayColor];
+        //cell.backgroundColor = [UIColor grayColor];
+    }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end
