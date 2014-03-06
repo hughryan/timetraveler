@@ -80,6 +80,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self.model update];
     [self closeOtherPickerCells];
     [self setupLocationLabel];
     [self setupDepartureDateLabel];

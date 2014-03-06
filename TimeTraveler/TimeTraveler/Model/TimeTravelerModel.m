@@ -18,37 +18,6 @@
     
 }
 
-- (long)calculateTimeZoneDifference{
-    
-    NSTimeZone *selectedTimeZone = [[NSTimeZone alloc] initWithName: self.selectedLocation];
-    
-    NSLog(@"Offset 1: %ld",(long)[selectedTimeZone secondsFromGMT]);
-    NSLog(@"Offset 2: %ld",(long)[self.currentTimeZone secondsFromGMT]);
-    
-    long currentTimeZoneAdjusted = ((([self.currentTimeZone secondsFromGMT]) / 3600) + 12);
-    long destinationTimeZoneAdjusted = ((([selectedTimeZone secondsFromGMT]) / 3600) + 12);
-    long deltaTimeZone;
-    
-    if(destinationTimeZoneAdjusted - currentTimeZoneAdjusted > 12){
-        
-        deltaTimeZone = (-1)*(24 - (destinationTimeZoneAdjusted - currentTimeZoneAdjusted)); //going west
-        
-    }
-    else if(destinationTimeZoneAdjusted - currentTimeZoneAdjusted < -12){
-        
-        deltaTimeZone = ((24 - currentTimeZoneAdjusted) + destinationTimeZoneAdjusted); //going east
-        
-    } else {
-        
-        deltaTimeZone = destinationTimeZoneAdjusted - currentTimeZoneAdjusted;
-        
-    }
-    
-    if(deltaTimeZone == -12)
-        deltaTimeZone = (deltaTimeZone * -1);
-    
-    return deltaTimeZone;
-}
 
 - (void)update {
     
@@ -82,6 +51,39 @@
     [tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
     [tripSettings synchronize];
     
+}
+
+
+- (long)calculateTimeZoneDifference{
+    
+    NSTimeZone *selectedTimeZone = [[NSTimeZone alloc] initWithName: self.selectedLocation];
+    
+    NSLog(@"Offset 1: %ld",(long)[selectedTimeZone secondsFromGMT]);
+    NSLog(@"Offset 2: %ld",(long)[self.currentTimeZone secondsFromGMT]);
+    
+    long currentTimeZoneAdjusted = ((([self.currentTimeZone secondsFromGMT]) / 3600) + 12);
+    long destinationTimeZoneAdjusted = ((([selectedTimeZone secondsFromGMT]) / 3600) + 12);
+    long deltaTimeZone;
+    
+    if(destinationTimeZoneAdjusted - currentTimeZoneAdjusted > 12){
+        
+        deltaTimeZone = (-1)*(24 - (destinationTimeZoneAdjusted - currentTimeZoneAdjusted)); //going west
+        
+    }
+    else if(destinationTimeZoneAdjusted - currentTimeZoneAdjusted < -12){
+        
+        deltaTimeZone = ((24 - currentTimeZoneAdjusted) + destinationTimeZoneAdjusted); //going east
+        
+    } else {
+        
+        deltaTimeZone = destinationTimeZoneAdjusted - currentTimeZoneAdjusted;
+        
+    }
+    
+    if(deltaTimeZone == -12)
+        deltaTimeZone = (deltaTimeZone * -1);
+    
+    return deltaTimeZone;
 }
 
 
