@@ -504,7 +504,8 @@
     NSLog(@"Save Button Pushed");
     
     [self.model save];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"settingsChanged"
+                                                        object:nil];
     [self.revealViewController revealToggleAnimated:YES];
     
 }

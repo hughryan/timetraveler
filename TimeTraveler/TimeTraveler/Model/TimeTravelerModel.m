@@ -11,6 +11,25 @@
 @implementation TimeTravelerModel
 
 
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
+{
+    NSDate *fromDate;
+    NSDate *toDate;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
+                 interval:NULL forDate:fromDateTime];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
+                 interval:NULL forDate:toDateTime];
+    
+    NSDateComponents *difference = [calendar components:NSDayCalendarUnit
+                                               fromDate:fromDate toDate:toDate options:0];
+    
+    return [difference day];
+}
+
+
 - (id)init {
 
     [self update];
@@ -87,7 +106,17 @@
 }
 
 
-- (NSDate*)adjustSchedule:(NSDate*)normalSchedule daysUntilTrip:(long)deltaD timeZonesCrossed:(long)deltaT shiftAmount:(long)interval {
+- (void)generateSchedule
+{
+    
+    long deltaD = (long)[TimeTravelerModel daysBetweenDate:[NSDate date] andDate:self.selectedDepartureDate];
+    long deltaT = [self calculateTimeZoneDifference];
+    
+    self.wakeScheduleArray = [[NSMutableArray alloc] init];
+    self.sleepScheduleArray = [[NSMutableArray alloc] init];
+    
+    double deltaDT = fabsf((double)deltaD / (double)deltaT);
+    double interval;
     
     int flag;
     
@@ -97,21 +126,6 @@
         flag = 1;
     }
     
-    NSDate *adjustedScheduleDate = [NSDate date];
-    adjustedScheduleDate = [normalSchedule dateByAddingTimeInterval:flag*interval*60*60];
-    return adjustedScheduleDate;
-}
-
-
-- (void)generateSchedule:(long)deltaD timeZonesCrossed:(long)deltaT {
-    
-    self.wakeScheduleArray = [[NSMutableArray alloc] init];
-    self.sleepScheduleArray = [[NSMutableArray alloc] init];
-    
-    double counter = deltaT;
-    double deltaDT = fabsf((double)deltaD / (double)deltaT);
-    double interval;
-    
     // determine interval
     if (deltaDT >= 1.5) {
         interval = 1.5;
@@ -120,45 +134,53 @@
     } else {
         interval = 1.0;
     }
-   
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
     
     //break wake / sleep time in to NSDateComponents
-    NSDateComponents *wakeTimeComponent = [gregorian components: (NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit) fromDate:self.selectedWakeTime];
-    NSDateComponents *sleepTimeComponent = [gregorian components: (NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit) fromDate:self.selectedSleepTime];
+    NSDateComponents *wakeTimeComponent = [[NSCalendar currentCalendar] components: (NSCalendarUnitHour | NSCalendarUnitMinute| NSCalendarUnitSecond) fromDate:self.selectedWakeTime];
+
+    NSDateComponents *sleepTimeComponent = [[NSCalendar currentCalendar] components: (NSCalendarUnitHour | NSCalendarUnitMinute| NSCalendarUnitSecond) fromDate:self.selectedSleepTime];
     
-    NSDateComponents *tempWake = [gregorian components:NSUIntegerMax fromDate: self.selectedDepartureDate];
-    [tempWake setHour: wakeTimeComponent.hour];
-    [tempWake setMonth: wakeTimeComponent.minute];
-    [tempWake setSecond: wakeTimeComponent.second];
-    
-    NSDateComponents *tempSleep = [gregorian components:NSUIntegerMax fromDate: self.selectedDepartureDate];
-    [tempSleep setHour: sleepTimeComponent.hour];
-    [tempSleep setMonth: sleepTimeComponent.minute];
-    [tempSleep setSecond: sleepTimeComponent.second];
+    NSDateComponents *dayComponent = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear) fromDate:self.selectedDepartureDate];
     
     // Create wake date object
-    NSDate *tempWakeDate = [NSDate date];
-    tempWakeDate = [gregorian dateFromComponents:tempWake];
+    NSDateComponents *tempWake = [[NSDateComponents alloc] init];
+    [tempWake setYear: [dayComponent year]];
+    [tempWake setMonth:[dayComponent month]];
+    [tempWake setDay:[dayComponent day]];
+    [tempWake setHour: [wakeTimeComponent hour]];
+    [tempWake setMinute: [wakeTimeComponent minute]];
+    [tempWake setSecond: [wakeTimeComponent second]];
+    NSDate *tempWakeDate = [[NSCalendar currentCalendar] dateFromComponents:tempWake];
     
     // Create sleep Date object
-    NSDate *tempSleepDate = [NSDate date];
-    tempSleepDate = [gregorian dateFromComponents:tempSleep];
+    NSDateComponents *tempSleep = [[NSDateComponents alloc] init];
+    [tempSleep setYear: [dayComponent year]];
+    [tempSleep setMonth:[dayComponent month]];
+    [tempSleep setDay:[dayComponent day]];
+    [tempSleep setHour: [sleepTimeComponent hour]];
+    [tempSleep setMinute: [sleepTimeComponent minute]];
+    [tempSleep setSecond: [sleepTimeComponent second]];
+    NSDate *tempSleepDate = [[NSCalendar currentCalendar] dateFromComponents:tempSleep];
     
-    while (counter > 0) {
-        
+    for (double counter = deltaT; counter > 0; counter--) {
+
         // Create Sleep Date
-        tempWakeDate = [self adjustSchedule:tempWakeDate daysUntilTrip:deltaT timeZonesCrossed:deltaD shiftAmount:interval];
+        tempWakeDate = [tempWakeDate dateByAddingTimeInterval:flag*interval*60*60];
         [self.wakeScheduleArray addObject:tempWakeDate];
         
         // Create Wake Date
-        tempSleepDate = [self adjustSchedule:tempSleepDate daysUntilTrip:deltaT timeZonesCrossed:deltaD shiftAmount:interval];
+        tempSleepDate = [tempSleepDate dateByAddingTimeInterval:flag*interval*60*60];
         [self.sleepScheduleArray addObject:tempSleepDate];
         
-        [tempWakeDate dateByAddingTimeInterval:-60*60*24];
-        [tempSleepDate dateByAddingTimeInterval:-60*60*24];
+        // Decrement Day
+        tempWakeDate = [tempWakeDate dateByAddingTimeInterval:-60*60*24];
+        tempSleepDate = [tempSleepDate dateByAddingTimeInterval:-60*60*24];
         
     }
+    
+    // Reverse array
+    self.wakeScheduleArray = [[[self.wakeScheduleArray reverseObjectEnumerator] allObjects] mutableCopy];
+    self.sleepScheduleArray = [[[self.sleepScheduleArray reverseObjectEnumerator] allObjects] mutableCopy];
 }
 
 

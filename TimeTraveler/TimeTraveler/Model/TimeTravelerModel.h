@@ -24,6 +24,6 @@
 - (id)init;
 - (void)update;
 - (void)save;
-
+- (void)generateSchedule;
 
 @end

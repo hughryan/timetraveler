@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572DA9D518CAA0E300732D50 /* sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 572DA9D418CAA0E300732D50 /* sun.jpg */; };
+		572DA9D718CAA18600732D50 /* moon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 572DA9D618CAA18600732D50 /* moon.jpg */; };
+		572DA9E918CB0C5B00732D50 /* TimeTravelerDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */; };
 		577F88C0189F60BE00EC9DC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88BF189F60BE00EC9DC3 /* Foundation.framework */; };
 		577F88C2189F60BE00EC9DC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */; };
 		577F88C4189F60BE00EC9DC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C3189F60BE00EC9DC3 /* UIKit.framework */; };
@@ -37,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		572DA9D418CAA0E300732D50 /* sun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sun.jpg; path = Images.xcassets/sun.jpg; sourceTree = "<group>"; };
+		572DA9D618CAA18600732D50 /* moon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = moon.jpg; path = Images.xcassets/moon.jpg; sourceTree = "<group>"; };
+		572DA9E718CB0C5B00732D50 /* TimeTravelerDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerDateCell.h; sourceTree = "<group>"; };
+		572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerDateCell.m; sourceTree = "<group>"; };
 		577F88BC189F60BE00EC9DC3 /* TimeTraveler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTraveler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577F88BF189F60BE00EC9DC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -121,10 +128,12 @@
 		577F88C5189F60BE00EC9DC3 /* TimeTraveler */ = {
 			isa = PBXGroup;
 			children = (
-				57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */,
 				577F88CE189F60BE00EC9DC3 /* TimeTravelerAppDelegate.h */,
 				577F88CF189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m */,
 				57AA2B3018A47BC600AD9309 /* Main.storyboard */,
+				572DA9E718CB0C5B00732D50 /* TimeTravelerDateCell.h */,
+				572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */,
+				57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */,
 				57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */,
 				57BD1AAD18A05D0F009A0567 /* TimeTravelerSettingsViewController.h */,
 				57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsViewController.m */,
@@ -139,6 +148,8 @@
 		577F88C6189F60BE00EC9DC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				572DA9D418CAA0E300732D50 /* sun.jpg */,
+				572DA9D618CAA18600732D50 /* moon.jpg */,
 				577F88C7189F60BE00EC9DC3 /* TimeTraveler-Info.plist */,
 				577F88C8189F60BE00EC9DC3 /* InfoPlist.strings */,
 				577F88CB189F60BE00EC9DC3 /* main.m */,
@@ -260,6 +271,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				572DA9D518CAA0E300732D50 /* sun.jpg in Resources */,
+				572DA9D718CAA18600732D50 /* moon.jpg in Resources */,
 				57AA2B3218A47BC600AD9309 /* Main.storyboard in Resources */,
 				577F88D8189F60BE00EC9DC3 /* Images.xcassets in Resources */,
 				577F88CA189F60BE00EC9DC3 /* InfoPlist.strings in Resources */,
@@ -284,6 +297,7 @@
 				57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsViewController.m in Sources */,
 				577F88D0189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m in Sources */,
 				577F88CC189F60BE00EC9DC3 /* main.m in Sources */,
+				572DA9E918CB0C5B00732D50 /* TimeTravelerDateCell.m in Sources */,
 				57E8886C18A43FE300428077 /* SWRevealViewController.m in Sources */,
 				57E8886F18A4524A00428077 /* TimeTravelerScheduleViewController.m in Sources */,
 				7EAFC90418B84D7100A6C182 /* TimeTravelerModel.m in Sources */,
