@@ -10,6 +10,7 @@
 		572DA9D518CAA0E300732D50 /* sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 572DA9D418CAA0E300732D50 /* sun.jpg */; };
 		572DA9D718CAA18600732D50 /* moon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 572DA9D618CAA18600732D50 /* moon.jpg */; };
 		572DA9E918CB0C5B00732D50 /* TimeTravelerDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */; };
+		5738A08A18CC11440086D6CA /* plane.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5738A08918CC11440086D6CA /* plane.jpg */; };
 		577F88C0189F60BE00EC9DC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88BF189F60BE00EC9DC3 /* Foundation.framework */; };
 		577F88C2189F60BE00EC9DC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */; };
 		577F88C4189F60BE00EC9DC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C3189F60BE00EC9DC3 /* UIKit.framework */; };
@@ -44,6 +45,7 @@
 		572DA9D618CAA18600732D50 /* moon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = moon.jpg; path = Images.xcassets/moon.jpg; sourceTree = "<group>"; };
 		572DA9E718CB0C5B00732D50 /* TimeTravelerDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerDateCell.h; sourceTree = "<group>"; };
 		572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerDateCell.m; sourceTree = "<group>"; };
+		5738A08918CC11440086D6CA /* plane.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = plane.jpg; path = Images.xcassets/plane.jpg; sourceTree = "<group>"; };
 		577F88BC189F60BE00EC9DC3 /* TimeTraveler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTraveler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577F88BF189F60BE00EC9DC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -148,6 +150,7 @@
 		577F88C6189F60BE00EC9DC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5738A08918CC11440086D6CA /* plane.jpg */,
 				572DA9D418CAA0E300732D50 /* sun.jpg */,
 				572DA9D618CAA18600732D50 /* moon.jpg */,
 				577F88C7189F60BE00EC9DC3 /* TimeTraveler-Info.plist */,
@@ -273,6 +276,7 @@
 			files = (
 				572DA9D518CAA0E300732D50 /* sun.jpg in Resources */,
 				572DA9D718CAA18600732D50 /* moon.jpg in Resources */,
+				5738A08A18CC11440086D6CA /* plane.jpg in Resources */,
 				57AA2B3218A47BC600AD9309 /* Main.storyboard in Resources */,
 				577F88D8189F60BE00EC9DC3 /* Images.xcassets in Resources */,
 				577F88CA189F60BE00EC9DC3 /* InfoPlist.strings in Resources */,

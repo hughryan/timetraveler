@@ -9,13 +9,14 @@
 
 @interface TimeTravelerModel : NSObject
 
-@property (strong, nonatomic) NSTimeZone *currentTimeZone;
+@property (strong, nonatomic) NSTimeZone *startingTimeZone;
 @property (strong, nonatomic) NSString *selectedLocation;
 @property (strong, nonatomic) NSNumber *selectedLocationRow;
 @property (strong, nonatomic) NSDate *selectedDepartureDate;
 @property (strong, nonatomic) NSDate *selectedSleepTime;
 @property (strong, nonatomic) NSDate *selectedWakeTime;
 @property (strong, nonatomic) NSNumber *selectedNotifications;
+@property (strong, nonatomic) NSDate *startDate;
 
 @property (nonatomic) NSTimeInterval timeTillDeparture;
 @property (nonatomic) NSTimeInterval secInDay;

@@ -39,7 +39,7 @@
 
 - (void)update {
     
-    self.currentTimeZone = [NSTimeZone systemTimeZone];
+    self.startingTimeZone = [NSTimeZone systemTimeZone];
     
     NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
     
@@ -49,6 +49,7 @@
     self.selectedSleepTime = [tripSettings objectForKey:@"sleepTime"];
     self.selectedWakeTime = [tripSettings objectForKey:@"wakeTime"];
     self.selectedNotifications = [tripSettings objectForKey:@"notifications"];
+    self.startDate = [tripSettings objectForKey:@"startDate"];
     
     [self determineTimeTillDeparture];
     
@@ -58,8 +59,10 @@
 - (void)save {
     
     [NSTimeZone resetSystemTimeZone];
-    self.currentTimeZone = [NSTimeZone localTimeZone];
-    NSLog(@"Departure Timezone: %@",[self.currentTimeZone name]);
+    self.startingTimeZone = [NSTimeZone systemTimeZone];
+    NSLog(@"Departure Timezone: %@",[self.startingTimeZone name]);
+    
+    self.startDate = [NSDate date];
     
     NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
     
@@ -69,6 +72,7 @@
     [tripSettings setObject:self.selectedSleepTime forKey:@"sleepTime"];
     [tripSettings setObject:self.selectedWakeTime forKey:@"wakeTime"];
     [tripSettings setObject:self.selectedNotifications forKey:@"notifications"];
+    [tripSettings setObject:self.startDate forKey:@"startDate"];
     [tripSettings synchronize];
     
     [self determineTimeTillDeparture];
@@ -102,7 +106,7 @@
     //NSLog(@"Destination TimeZone Offset: %ld",(long)[selectedTimeZone secondsFromGMT]);
     //NSLog(@"Current TimeZone Offset: %ld",(long)[self.currentTimeZone secondsFromGMT]);
     
-    long currentTimeZoneAdjusted = ((([self.currentTimeZone secondsFromGMT]) / 3600) + 12);
+    long currentTimeZoneAdjusted = ((([self.startingTimeZone secondsFromGMT]) / 3600) + 12);
     long destinationTimeZoneAdjusted = ((([selectedTimeZone secondsFromGMT]) / 3600) + 12);
     long deltaTimeZone;
     
@@ -128,14 +132,14 @@
     self.wakeScheduleArray = [[NSMutableArray alloc] init];
     self.sleepScheduleArray = [[NSMutableArray alloc] init];
     
-    long daysBeforeDeparture = (long)[TimeTravelerModel daysBetweenDate:[NSDate date] andDate:self.selectedDepartureDate] + 1;
-    NSLog(@"Days Before Departure: %ld", daysBeforeDeparture);
+    long daysBeforeDeparture = (long)[TimeTravelerModel daysBetweenDate:self.startDate andDate:self.selectedDepartureDate] + 1;
+    NSLog(@"Days From Start Until Departure: %ld", daysBeforeDeparture);
     
     long timeZoneChange = [self calculateTimeZoneDifference];
     NSLog(@"Timezone Change Undergone: %ld", timeZoneChange);
 
     double estimatedScheduleAdjustmentInterval = fabs((double)timeZoneChange / (double)daysBeforeDeparture);
-    NSLog(@"Estimated Schedule Adjustment Interval: %lf", estimatedScheduleAdjustmentInterval);
+    NSLog(@"Estimated Interval: %lf", estimatedScheduleAdjustmentInterval);
     
     // determine direction
     int flag;
@@ -160,7 +164,7 @@
     // Create wake date object
     NSDateComponents *tempWake = [[NSDateComponents alloc] init];
     [tempWake setYear: [dayComponent year]];
-    [tempWake setMonth:[dayComponent month]];
+    [tempWake setMonth: [dayComponent month]];
     [tempWake setDay: [dayComponent day]];
     [tempWake setHour: [wakeTimeComponent hour]];
     [tempWake setMinute: [wakeTimeComponent minute]];
@@ -170,7 +174,7 @@
     // Create sleep Date object
     NSDateComponents *tempSleep = [[NSDateComponents alloc] init];
     [tempSleep setYear: [dayComponent year]];
-    [tempSleep setMonth:[dayComponent month]];
+    [tempSleep setMonth: [dayComponent month]];
     [tempSleep setDay: [dayComponent day]];
     [tempSleep setHour: [sleepTimeComponent hour]];
     [tempSleep setMinute: [sleepTimeComponent minute]];
@@ -211,9 +215,24 @@
         
     }
     
-    for(NSDate *temp in self.wakeScheduleArray){
-        NSLog(@"wake: %@", temp);
+    // Remove date objects that have already transpired
+    NSMutableArray *discardedWake = [NSMutableArray array];
+    NSMutableArray *discardedSleep = [NSMutableArray array];
+    
+    long arraySize = [self.wakeScheduleArray count];
+    for (int i = 0; i < arraySize; i++) {
+        
+        // If both wake and sleep times for a given day have passed & are over a day old add to discard array
+        if (([[self.wakeScheduleArray objectAtIndex:i] timeIntervalSinceNow] < (0 - self.secondsPassedToday))
+            && ([[self.sleepScheduleArray objectAtIndex:i] timeIntervalSinceNow] < (0 - self.secondsPassedToday))) {
+            [discardedWake addObject:[self.wakeScheduleArray objectAtIndex:i]];
+            [discardedSleep addObject:[self.sleepScheduleArray objectAtIndex:i]];
+        }
     }
+    
+    // Remove the discards from the final array
+    [self.wakeScheduleArray removeObjectsInArray:discardedWake];
+    [self.sleepScheduleArray removeObjectsInArray:discardedSleep];
     
 }
 

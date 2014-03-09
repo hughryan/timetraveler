@@ -28,11 +28,13 @@
 {
     [super viewDidLoad];
     
+    // Set up settings controller
     self.settingsButton.target = self.revealViewController;
     self.settingsButton.action = @selector(revealToggle:);
     
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
+    // Set up model
     self.model = [[TimeTravelerModel alloc] init];
     [self.model determineTimeTillDeparture];
     
@@ -41,6 +43,17 @@
                                              selector:@selector(reloadTable:)
                                                  name:@"settingsChanged"
                                                object:nil];
+    
+    // Create formatters
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setDateStyle: NSDateFormatterLongStyle];
+    [self.dateFormatter setTimeStyle: NSDateFormatterNoStyle];
+    
+    self.timeFormatter = [[NSDateFormatter alloc] init];
+    [self.timeFormatter setDateStyle: NSDateFormatterNoStyle];
+    [self.timeFormatter setTimeStyle: NSDateFormatterShortStyle];
+    
+    [self update];
     
     //NAV BAR
     /*
@@ -55,111 +68,143 @@
     titleImageView.frame = titleImageViewFrame;
     self.navigationItem.titleView = titleView;
      */
-    
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController setNeedsStatusBarAppearanceUpdate];
-    
-    //Refresh Data
-    //[self.model update];
-    //[self.model generateSchedule];
-    //[self updateBgImage];
 
-    
-    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"moon.jpg"] forBarMetrics:UIBarMetricsDefault];
-    //[self.navigationController setNeedsStatusBarAppearanceUpdate];
-    
-    // Get our custom nav bar
-    //self.navBar = (TimeTravelerNavBar*)self.navigationController.navigationBar;
-    
-    // Set the nav bar's background
-    //[self.navBar setBackgroundWith:[UIImage imageNamed:@"moon.jpg"]];
-    // Create a custom back button
-    //UIButton* backButton = [customNavigationBar backButtonWith:[UIImage imageNamed:@"navigationBarBackButton.png"] highlight:nil leftCapWidth:14.0];
-    //backButton.titleLabel.textColor = [UIColor colorWithRed:254.0/255.0 green:239.0/255.0 blue:218.0/225.0 alpha:1];
-    //self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
+}
 
+
+- (void)update
+{
+    [self.model update];
+    [self.model generateSchedule];
+    [self checkForActiveTrip];
+    [self updateBgImage];
+}
+
+
+- (void)checkForActiveTrip
+{
+    if ([self.model.wakeScheduleArray count] || [self.model.sleepScheduleArray count]) {
+        self.activeTrip = YES;
+    } else {
+        self.activeTrip = NO;
+    }
+    NSLog(@"Active Trip: %d", self.activeTrip);
 }
 
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //Refresh Data
-    [self.model update];
-    [self.model generateSchedule];
-    //[self.model determineTimeTillDeparture];
-    //[self updateBgImage];
-    //[self updateNowView];
+    [self update];
 }
 
 
-- (void)reloadTable:(NSNotification *)notif {
-    [self.model update];
-    [self.model generateSchedule];
-    [self updateBgImage];
+- (void)reloadTable:(NSNotification *)notif
+{
+    [self update];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+}
 
+
+- (NSDateComponents *)breakDateComponents:(NSDate *)dateToBreakApart
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components: (NSCalendarUnitHour | NSCalendarUnitMinute| NSCalendarUnitSecond | NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear) fromDate:dateToBreakApart];
+    return components;
 }
 
 
 -(void)updateBgImage
 {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"plane.jpg"] forBarMetrics:UIBarMetricsDefault];
     
-    //NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-    //NSDateComponents *wakeComponent;
-    //NSDateComponents *sleepComponent;
-    
-    NSDate *awake;
-    NSDate *asleep;
-    
-    NSDate *today = [NSDate date];
-    for( NSDate *tempDate in self.model.wakeScheduleArray){
-       
-        if([today isEqualToDate:tempDate]) {
-            //wakeComponent = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: tempDate];
-            awake = tempDate;
-            break;
-        }
-    }
-    
-    //awake = [cal dateFromComponents:wakeComponent];
-    
-    for(NSDate *tempDate in self.model.sleepScheduleArray){
+    if (self.activeTrip) {
         
-        if([today isEqualToDate:tempDate]) {
+        NSDateComponents *wake;
+        NSDateComponents *sleep;
+        
+        NSDate *todayDate = [NSDate date];
+        NSDateComponents *today = [self breakDateComponents:todayDate];
+        
+        NSMutableArray *wakeArray = [NSMutableArray array];
+        NSMutableArray *sleepArray = [NSMutableArray array];
+        
+        for (NSDate *tempDate in self.model.wakeScheduleArray){
             
-            //sleepComponent = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: tempDate];
-            //asleep = [cal dateFromComponents:sleepComponent];
-            asleep = tempDate;
-            break;
+            //break time in to NSDateComponents
+            wake = [self breakDateComponents:tempDate];
             
+            if (wake.day == today.day && wake.month == today.month && wake.year == today.year) {
+                if (wake.hour > today.hour) {
+                    NSLog(@"BG DEBUG (wake): %ld", (long)wake.day);
+                    [wakeArray addObject:wake];
+                }
+            }
         }
-    }
-
     
-    if(([awake timeIntervalSinceNow] < 0 ) || [asleep timeIntervalSinceNow] >= 0){
-     //sleepy time
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"moon.jpg"] forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController setNeedsStatusBarAppearanceUpdate];
-        
-        //UIImage *theImage = [UIImage imageNamed:@"moon.jpg"];
-        //cell.nowImage.image = theImage;
-        //cell.nowLabel.text = @"TEST";
-        //self.nowImage.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:moon ofType:@"jpg"]];
-        //self.nowLabel.text = @"Rest";
+        for (NSDate *tempDate in self.model.sleepScheduleArray) {
+            
+            //break time in to NSDateComponents
+            sleep = [self breakDateComponents:tempDate];
+            
+            if (sleep.day == today.day && sleep.month == today.month && sleep.year == today.year) {
+                if (wake.hour > today.hour) {
+                    NSLog(@"BG DEBUG (sleep): %ld", (long)sleep.day);
+                    [sleepArray addObject:sleep];
+                }
+            }
+        }
 
-    }else{
-        //wakey wakey
-     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"sun.jpg"] forBarMetrics:UIBarMetricsDefault];
-     [self.navigationController setNeedsStatusBarAppearanceUpdate];
+        NSLog(@"BG DEBUG (active): %d", self.activeTrip);
+        NSLog(@"Array Size: %ld", [wakeArray count]);
         
-        //UIImage *theImage = [UIImage imageWithContentsOfFile:@"sun.jpg"];
-        //cell.imageView.image = theImage;
-        //self.nowImage.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:sun ofType:@"jpg"]];
-        //self.nowLabel.text = @"Active";
+        // Sort array and find the event happening next
+        NSString *currentEvent = @"";
+        NSDateComponents *nextEventTime = [[NSDateComponents alloc] init];
+        if ([wakeArray count]) {
+            
+            [nextEventTime setHour:[[wakeArray objectAtIndex:0] hour]];
+            [nextEventTime setMinute:[[wakeArray objectAtIndex:0] minute]];
+            [nextEventTime setSecond:[[wakeArray objectAtIndex:0] second]];
+            currentEvent = @"Sleep";
+            
+        } else if ([sleepArray count]) {
+            
+            [nextEventTime setHour:[[sleepArray objectAtIndex:0] hour]];
+            [nextEventTime setMinute:[[sleepArray objectAtIndex:0] minute]];
+            [nextEventTime setSecond:[[sleepArray objectAtIndex:0] second]];
+            currentEvent = @"Wake";
+        }
         
+        for (NSDateComponents *tempComp in wakeArray) {
+            
+            if (tempComp.hour < nextEventTime.hour && tempComp.minute < nextEventTime.minute && tempComp.second < nextEventTime.second) {
+                nextEventTime = tempComp;
+                // Next event is wake so current event is sleep
+                currentEvent = @"Sleep";
+            }
+        }
+        
+        for (NSDateComponents *tempComp in sleepArray) {
+           
+            if (tempComp.hour < nextEventTime.hour && tempComp.minute < nextEventTime.minute && tempComp.second < nextEventTime.second) {
+                nextEventTime = tempComp;
+                // Next event is sleep so current event is wake
+                currentEvent = @"Wake";
+            }
+        }
+        
+        NSLog(@"Current Event: %@", currentEvent);
+        
+        if([currentEvent isEqual: @"Sleep"]){
+            //sleepy time
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"moon.jpg"] forBarMetrics:UIBarMetricsDefault];
+        } else {
+            //wakey wakey
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"sun.jpg"] forBarMetrics:UIBarMetricsDefault];
+        }
+    
     }
     
-    //return cell;
+    [self.navigationController setNeedsStatusBarAppearanceUpdate];
     
 }
 
@@ -178,8 +223,12 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    NSInteger numOfSections = 1;
-    //numOfSections += [self.model.wakeScheduleArray count];
+    NSInteger numOfSections = [self.model.wakeScheduleArray count];
+    //self.activeTrip = YES;
+    if (numOfSections == 0) {
+        numOfSections = 1;
+        //self.activeTrip = NO;
+    }
     return numOfSections;
 }
 
@@ -187,83 +236,40 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSInteger numOfRows = [self.model.wakeScheduleArray count];
- /*
-    for(NSDate *tempDate in self.model.wakeScheduleArray){
-        
-        if(!([tempDate timeIntervalSinceNow] < self.model.secInDay)) {
-            numOfRows++;
-        }
-    }
-*/
+    NSInteger numOfRows = 1;
     return numOfRows;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //static NSString *CellIdentifier = @"Cell";
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    // Configure the cell...
     
     TimeTravelerDateCell *cell;
     
-    //check if departure date is tomorrow or greater
-    /*
-    if (self.timeTillDeparture > (self.secInDay - self.secondsPassedToday)) { //if so update the tables
+    // Check if there is an active trip
+    if (self.activeTrip) {
     
-        [self.model generateSchedule:(long)self.timeTillDeparture];
-        //if first section load now view
-        if (indexPath.section == 0) {
-            
-            cell = [tableView dequeueReusableCellWithIdentifier:@"nowViewID"];
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"nowViewID"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"dateCellID"];
+        if (cell == nil) {
+                cell = [[TimeTravelerDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dateCellID"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
-            [self updateNowView];
-            
-        } else { //else load date views
-            
-            
-            
         }
-        
-    } else {  //if not load 'no schedule set' view
-        
-        if (indexPath.section == 0) {
-            
-            cell = [tableView dequeueReusableCellWithIdentifier:@"nilViewID"];
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"nilViewID"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
-        }
-        
-    }*/
     
-    cell = [tableView dequeueReusableCellWithIdentifier:@"dateCellID"];
-    if (cell == nil) {
-            cell = [[TimeTravelerDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dateCellID"];
+        // Format strings
+        NSString *formattedWakeTime = [self.timeFormatter stringFromDate:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]];
+        cell.wakeTime.text = formattedWakeTime;
+        NSString *formattedSleepTime = [self.timeFormatter stringFromDate:[self.model.sleepScheduleArray objectAtIndex:indexPath.section]];
+        cell.sleepTime.text = formattedSleepTime;
+    
+    } else { // No active trip
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:@"nilCellID"];
+        if (cell == nil) {
+            cell = [[TimeTravelerDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"nilCellID"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-    
-    // Create formatters
-    self.dateFormatter = [[NSDateFormatter alloc] init];
-    [self.dateFormatter setDateStyle: NSDateFormatterLongStyle];
-    [self.dateFormatter setTimeStyle: NSDateFormatterNoStyle];
-    
-    self.timeFormatter = [[NSDateFormatter alloc] init];
-    [self.timeFormatter setDateStyle: NSDateFormatterNoStyle];
-    [self.timeFormatter setTimeStyle: NSDateFormatterShortStyle];
-    
-    // Format strings
-    NSString *formattedDateString = [self.dateFormatter stringFromDate:[self.model.wakeScheduleArray objectAtIndex:indexPath.row]];
-    cell.dateLabel.text = formattedDateString;
-    NSString *formattedWakeTime = [self.timeFormatter stringFromDate:[self.model.wakeScheduleArray objectAtIndex:indexPath.row]];
-    cell.wakeTime.text = formattedWakeTime;
-    NSString *formattedSleepTime = [self.timeFormatter stringFromDate:[self.model.sleepScheduleArray objectAtIndex:indexPath.row]];
-    cell.sleepTime.text = formattedSleepTime;
+        
+    }
     
     return cell;
 }
@@ -272,59 +278,35 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHeight = 70;
+    if (!self.activeTrip) rowHeight = tableView.bounds.size.height;
     return rowHeight;
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    if(cell.selectionStyle == UITableViewCellSelectionStyleNone){
+        return nil;
+    }
+    return indexPath;
 }
 
- */
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionTitle = nil;
+    if (self.activeTrip) {
+        NSDate *todayDate = [NSDate date];
+        NSDateComponents *today = [self breakDateComponents:todayDate];
+        NSDateComponents *event = [self breakDateComponents:[self.model.wakeScheduleArray objectAtIndex:section]];
+        if (event.day == today.day && event.month == today.month && event.year == today.year) {
+            sectionTitle = @"Today";
+        } else {
+            sectionTitle = [self.dateFormatter stringFromDate:[self.model.wakeScheduleArray objectAtIndex:section]];
+        }
+    }
+    return sectionTitle;
+}
 
 @end
