@@ -2,7 +2,6 @@
 //  TimeTravelerDateCell.h
 //  TimeTraveler
 //
-//  Created by Hugh McDonald on 3/8/14.
 //  Copyright (c) 2014 snowFish. All rights reserved.
 //
 

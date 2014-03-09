@@ -501,7 +501,7 @@
 
 - (IBAction)saveButtonPushed:(UIButton *)sender
 {
-    NSLog(@"Save Button Pushed");
+    NSLog(@"=========Save Button Pushed=========");
     
     [self.model save];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"settingsChanged"

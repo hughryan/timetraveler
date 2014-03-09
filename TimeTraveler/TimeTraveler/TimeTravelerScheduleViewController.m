@@ -2,7 +2,6 @@
 //  TimeTravelerScheduleViewController.m
 //  TimeTraveler
 //
-//  Created by Hugh McDonald on 2/6/14.
 //  Copyright (c) 2014 snowFish. All rights reserved.
 //
 
@@ -15,9 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
-@property (nonatomic) NSTimeInterval timeTillDeparture;
-@property (nonatomic) NSTimeInterval secInDay;
-@property (nonatomic) NSTimeInterval secondsPassedToday;
 @property (nonatomic) BOOL activeTrip;
 
 @property (strong, retain) NSDateFormatter *dateFormatter;
@@ -38,7 +34,7 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
     self.model = [[TimeTravelerModel alloc] init];
-    [self determineTimeTillDeparture];
+    [self.model determineTimeTillDeparture];
     
     // Set up listener for settings changes
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -62,6 +58,11 @@
     
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNeedsStatusBarAppearanceUpdate];
+    
+    //Refresh Data
+    //[self.model update];
+    //[self.model generateSchedule];
+    //[self updateBgImage];
 
     
     //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"moon.jpg"] forBarMetrics:UIBarMetricsDefault];
@@ -85,8 +86,8 @@
     //Refresh Data
     [self.model update];
     [self.model generateSchedule];
-    [self determineTimeTillDeparture];
-    [self updateBgImage];
+    //[self.model determineTimeTillDeparture];
+    //[self updateBgImage];
     //[self updateNowView];
 }
 
@@ -95,37 +96,17 @@
     [self.model update];
     [self.model generateSchedule];
     [self updateBgImage];
-    //[self.tableView reloadData];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 
-}
-
-
-- (void)determineTimeTillDeparture {
-    
-    NSDate *today = [NSDate date];
-    
-    NSDate *zeroHour = [NSDate date];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-    NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: zeroHour];
-    [components setHour: 00];
-    [components setMinute: 00];
-    [components setSecond: 00];
-    zeroHour = [gregorian dateFromComponents: components];
-    
-    self.secInDay = 86400;
-    self.timeTillDeparture = [self.model.selectedDepartureDate timeIntervalSinceNow];
-    self.secondsPassedToday = [today timeIntervalSinceDate:zeroHour];
-    
 }
 
 
 -(void)updateBgImage
 {
     
-    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-    NSDateComponents *wakeComponent;
-    NSDateComponents *sleepComponent;
+    //NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    //NSDateComponents *wakeComponent;
+    //NSDateComponents *sleepComponent;
     
     NSDate *awake;
     NSDate *asleep;
@@ -182,6 +163,7 @@
     
 }
 
+
 #pragma - Xcode Methods
 
 - (void)didReceiveMemoryWarning
@@ -201,12 +183,22 @@
     return numOfSections;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     NSInteger numOfRows = [self.model.wakeScheduleArray count];
+ /*
+    for(NSDate *tempDate in self.model.wakeScheduleArray){
+        
+        if(!([tempDate timeIntervalSinceNow] < self.model.secInDay)) {
+            numOfRows++;
+        }
+    }
+*/
     return numOfRows;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

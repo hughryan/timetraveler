@@ -2,7 +2,6 @@
 //  TimeTravelerTests.m
 //  TimeTravelerTests
 //
-//  Created by Hugh McDonald on 2/2/14.
 //  Copyright (c) 2014 snowFish. All rights reserved.
 //
 
@@ -101,8 +100,8 @@ void setData()
 
 - (void) goingEastLessThanTwelve
 {
-    NSUserDefaults * tripSettings = [[NSUserDefaults alloc] init];
-    long result = 0;
+    //NSUserDefaults * tripSettings = [[NSUserDefaults alloc] init];
+    //long result = 0;
     //result = TimeTravelerModel.CalculateTimeZoneDifference;
 }
 

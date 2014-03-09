@@ -2,7 +2,6 @@
 //  TimeTravelerModel.h
 //  TimeTraveler
 //
-//  Created by Sean P McDonald on 2/21/14.
 //  Copyright (c) 2014 snowFish. All rights reserved.
 //
 
@@ -18,6 +17,10 @@
 @property (strong, nonatomic) NSDate *selectedWakeTime;
 @property (strong, nonatomic) NSNumber *selectedNotifications;
 
+@property (nonatomic) NSTimeInterval timeTillDeparture;
+@property (nonatomic) NSTimeInterval secInDay;
+@property (nonatomic) NSTimeInterval secondsPassedToday;
+
 @property (strong, nonatomic) NSMutableArray *wakeScheduleArray;
 @property (strong, nonatomic) NSMutableArray *sleepScheduleArray;
 
@@ -25,5 +28,8 @@
 - (void)update;
 - (void)save;
 - (void)generateSchedule;
+- (void)determineTimeTillDeparture;
+
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 
 @end
