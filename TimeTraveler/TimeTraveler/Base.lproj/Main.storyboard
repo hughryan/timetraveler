@@ -355,7 +355,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="534" y="-484"/>
         </scene>
-        <!--Time Traveler Schedule View Controller - TimeTraveler-->
+        <!--Time Traveler Schedule View Controller-->
         <scene sceneID="sCz-6Y-QbP">
             <objects>
                 <tableViewController id="2OS-U3-MKe" customClass="TimeTravelerScheduleViewController" sceneMemberID="viewController">
@@ -421,8 +421,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="TimeTraveler" id="bEu-Va-79Q">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="JTs-VX-2q5">
+                    <navigationItem key="navigationItem" id="bEu-Va-79Q">
+                        <barButtonItem key="leftBarButtonItem" image="tt_menu" id="JTs-VX-2q5">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -451,7 +451,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="menu" width="28" height="20"/>
+        <image name="tt_menu" width="28" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

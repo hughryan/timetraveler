@@ -56,6 +56,9 @@
     [self update];
     
     //NAV BAR
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tt_logo.png"]];
+    self.navigationItem.titleView = imageView;
+    
     /*
     UIImage* titleImage = [UIImage imageNamed:@"moon.jpg"];
     UIView* titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,titleImage.size.width, self.navigationController.navigationBar.frame.size.height)];
@@ -114,7 +117,7 @@
 
 -(void)updateBgImage
 {
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"plane.jpg"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"plane.png"] forBarMetrics:UIBarMetricsDefault];
     
     if (self.activeTrip) {
         
@@ -131,10 +134,13 @@
             
             //break time in to NSDateComponents
             wake = [self breakDateComponents:tempDate];
+            //NSLog(@"WAKE DAY: %ld", (long)wake.day);
+            //NSLog(@"WAKE HOUR: %ld", (long)wake.hour);
+            //NSLog(@"TODAY: %ld", (long)today.day);
+            //NSLog(@"NOW: %ld", (long)today.hour);
             
             if (wake.day == today.day && wake.month == today.month && wake.year == today.year) {
                 if (wake.hour > today.hour) {
-                    NSLog(@"BG DEBUG (wake): %ld", (long)wake.day);
                     [wakeArray addObject:wake];
                 }
             }
@@ -144,20 +150,22 @@
             
             //break time in to NSDateComponents
             sleep = [self breakDateComponents:tempDate];
+            //NSLog(@"SLEEP DAY: %ld", (long)sleep.day);
+            //NSLog(@"SLEEP HOUR: %ld", (long)sleep.hour);
+            //NSLog(@"TODAY: %ld", (long)today.day);
+            //NSLog(@"NOW: %ld", (long)today.hour);
             
             if (sleep.day == today.day && sleep.month == today.month && sleep.year == today.year) {
-                if (wake.hour > today.hour) {
-                    NSLog(@"BG DEBUG (sleep): %ld", (long)sleep.day);
+                if (sleep.hour > today.hour) {
                     [sleepArray addObject:sleep];
                 }
             }
         }
 
-        NSLog(@"BG DEBUG (active): %d", self.activeTrip);
-        NSLog(@"Array Size: %ld", [wakeArray count]);
+        //NSLog(@"Array Size: %ld", [wakeArray count]);
         
         // Sort array and find the event happening next
-        NSString *currentEvent = @"";
+        NSString *currentEvent = @"Future";
         NSDateComponents *nextEventTime = [[NSDateComponents alloc] init];
         if ([wakeArray count]) {
             
@@ -176,7 +184,7 @@
         
         for (NSDateComponents *tempComp in wakeArray) {
             
-            if (tempComp.hour < nextEventTime.hour && tempComp.minute < nextEventTime.minute && tempComp.second < nextEventTime.second) {
+            if (tempComp.hour < nextEventTime.hour) {
                 nextEventTime = tempComp;
                 // Next event is wake so current event is sleep
                 currentEvent = @"Sleep";
@@ -185,7 +193,7 @@
         
         for (NSDateComponents *tempComp in sleepArray) {
            
-            if (tempComp.hour < nextEventTime.hour && tempComp.minute < nextEventTime.minute && tempComp.second < nextEventTime.second) {
+            if (tempComp.hour < nextEventTime.hour) {
                 nextEventTime = tempComp;
                 // Next event is sleep so current event is wake
                 currentEvent = @"Wake";
@@ -194,12 +202,14 @@
         
         NSLog(@"Current Event: %@", currentEvent);
         
-        if([currentEvent isEqual: @"Sleep"]){
+        if ([currentEvent isEqual: @"Sleep"]){
             //sleepy time
-            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"moon.jpg"] forBarMetrics:UIBarMetricsDefault];
-        } else {
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"night.png"] forBarMetrics:UIBarMetricsDefault];
+        } else if ([currentEvent isEqual:@"Wake"]){
             //wakey wakey
-            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"sun.jpg"] forBarMetrics:UIBarMetricsDefault];
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"day.png"] forBarMetrics:UIBarMetricsDefault];
+        } else {
+            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"plane.png"] forBarMetrics:UIBarMetricsDefault];
         }
     
     }

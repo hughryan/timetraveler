@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		572DA9D518CAA0E300732D50 /* sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 572DA9D418CAA0E300732D50 /* sun.jpg */; };
-		572DA9D718CAA18600732D50 /* moon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 572DA9D618CAA18600732D50 /* moon.jpg */; };
+		5726E0EE18CC9D3000562F23 /* day.png in Resources */ = {isa = PBXBuildFile; fileRef = 5726E0EB18CC9D3000562F23 /* day.png */; };
+		5726E0EF18CC9D3000562F23 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 5726E0EC18CC9D3000562F23 /* night.png */; };
+		5726E0F018CC9D3000562F23 /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 5726E0ED18CC9D3000562F23 /* plane.png */; };
+		5726E0F318CC9F8700562F23 /* tt_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5726E0F118CC9F8700562F23 /* tt_menu.png */; };
+		5726E0F418CC9F8700562F23 /* tt_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5726E0F218CC9F8700562F23 /* tt_menu@2x.png */; };
+		5726E0F618CCA37400562F23 /* tt_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5726E0F518CCA37400562F23 /* tt_logo.png */; };
 		572DA9E918CB0C5B00732D50 /* TimeTravelerDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */; };
-		5738A08A18CC11440086D6CA /* plane.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5738A08918CC11440086D6CA /* plane.jpg */; };
 		577F88C0189F60BE00EC9DC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88BF189F60BE00EC9DC3 /* Foundation.framework */; };
 		577F88C2189F60BE00EC9DC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */; };
 		577F88C4189F60BE00EC9DC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F88C3189F60BE00EC9DC3 /* UIKit.framework */; };
@@ -41,11 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		572DA9D418CAA0E300732D50 /* sun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sun.jpg; path = Images.xcassets/sun.jpg; sourceTree = "<group>"; };
-		572DA9D618CAA18600732D50 /* moon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = moon.jpg; path = Images.xcassets/moon.jpg; sourceTree = "<group>"; };
+		5726E0EB18CC9D3000562F23 /* day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = day.png; sourceTree = "<group>"; };
+		5726E0EC18CC9D3000562F23 /* night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = night.png; sourceTree = "<group>"; };
+		5726E0ED18CC9D3000562F23 /* plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane.png; sourceTree = "<group>"; };
+		5726E0F118CC9F8700562F23 /* tt_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_menu.png; sourceTree = "<group>"; };
+		5726E0F218CC9F8700562F23 /* tt_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tt_menu@2x.png"; sourceTree = "<group>"; };
+		5726E0F518CCA37400562F23 /* tt_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_logo.png; sourceTree = "<group>"; };
 		572DA9E718CB0C5B00732D50 /* TimeTravelerDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerDateCell.h; sourceTree = "<group>"; };
 		572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerDateCell.m; sourceTree = "<group>"; };
-		5738A08918CC11440086D6CA /* plane.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = plane.jpg; path = Images.xcassets/plane.jpg; sourceTree = "<group>"; };
 		577F88BC189F60BE00EC9DC3 /* TimeTraveler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTraveler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577F88BF189F60BE00EC9DC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		577F88C1189F60BE00EC9DC3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -97,6 +103,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5726E0EA18CC9D3000562F23 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5726E0F518CCA37400562F23 /* tt_logo.png */,
+				5726E0F118CC9F8700562F23 /* tt_menu.png */,
+				5726E0F218CC9F8700562F23 /* tt_menu@2x.png */,
+				5726E0EB18CC9D3000562F23 /* day.png */,
+				5726E0EC18CC9D3000562F23 /* night.png */,
+				5726E0ED18CC9D3000562F23 /* plane.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		577F88B3189F60BE00EC9DC3 = {
 			isa = PBXGroup;
 			children = (
@@ -150,9 +169,7 @@
 		577F88C6189F60BE00EC9DC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5738A08918CC11440086D6CA /* plane.jpg */,
-				572DA9D418CAA0E300732D50 /* sun.jpg */,
-				572DA9D618CAA18600732D50 /* moon.jpg */,
+				5726E0EA18CC9D3000562F23 /* Images */,
 				577F88C7189F60BE00EC9DC3 /* TimeTraveler-Info.plist */,
 				577F88C8189F60BE00EC9DC3 /* InfoPlist.strings */,
 				577F88CB189F60BE00EC9DC3 /* main.m */,
@@ -274,12 +291,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				572DA9D518CAA0E300732D50 /* sun.jpg in Resources */,
-				572DA9D718CAA18600732D50 /* moon.jpg in Resources */,
-				5738A08A18CC11440086D6CA /* plane.jpg in Resources */,
+				5726E0EE18CC9D3000562F23 /* day.png in Resources */,
 				57AA2B3218A47BC600AD9309 /* Main.storyboard in Resources */,
+				5726E0F018CC9D3000562F23 /* plane.png in Resources */,
 				577F88D8189F60BE00EC9DC3 /* Images.xcassets in Resources */,
+				5726E0EF18CC9D3000562F23 /* night.png in Resources */,
+				5726E0F318CC9F8700562F23 /* tt_menu.png in Resources */,
+				5726E0F618CCA37400562F23 /* tt_logo.png in Resources */,
 				577F88CA189F60BE00EC9DC3 /* InfoPlist.strings in Resources */,
+				5726E0F418CC9F8700562F23 /* tt_menu@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
