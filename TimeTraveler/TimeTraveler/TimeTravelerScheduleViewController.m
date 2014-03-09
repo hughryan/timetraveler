@@ -53,24 +53,12 @@
     [self.timeFormatter setDateStyle: NSDateFormatterNoStyle];
     [self.timeFormatter setTimeStyle: NSDateFormatterShortStyle];
     
+    // Update model
     [self update];
     
-    //NAV BAR
+    // Navbar logo
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tt_logo.png"]];
     self.navigationItem.titleView = imageView;
-    
-    /*
-    UIImage* titleImage = [UIImage imageNamed:@"moon.jpg"];
-    UIView* titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,titleImage.size.width, self.navigationController.navigationBar.frame.size.height)];
-    UIImageView* titleImageView = [[UIImageView alloc] initWithImage:titleImage];
-    [titleView addSubview:titleImageView];
-    titleImageView.center = titleView.center;
-    CGRect titleImageViewFrame = titleImageView.frame;
-    // Offset the logo up a bit
-    titleImageViewFrame.origin.y = titleImageViewFrame.origin.y + 3.0;
-    titleImageView.frame = titleImageViewFrame;
-    self.navigationItem.titleView = titleView;
-     */
 
 }
 
@@ -167,6 +155,7 @@
         // Sort array and find the event happening next
         NSString *currentEvent = @"Future";
         NSDateComponents *nextEventTime = [[NSDateComponents alloc] init];
+        
         if ([wakeArray count]) {
             
             [nextEventTime setHour:[[wakeArray objectAtIndex:0] hour]];
@@ -278,7 +267,6 @@
             cell = [[TimeTravelerDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"nilCellID"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        
     }
     
     return cell;
