@@ -59,6 +59,23 @@
     // Navbar logo
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tt_logo.png"]];
     self.navigationItem.titleView = imageView;
+    
+    // Notifcation that application has reentered foreground
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationEnteredForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
+    // Load timer to update table every minute
+    [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(reloadTable:) userInfo:nil repeats:YES];
+    
+}
+
+
+- (void)applicationEnteredForeground:(NSNotification *)notification {
+    NSLog(@"Application Entered Foreground");
+    [self update];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 
@@ -159,6 +176,7 @@
         
         NSDateComponents *wake;
         NSDateComponents *sleep;
+        BOOL eventsToday = NO;
         
         NSDate *todayDate = [NSDate date];
         NSDateComponents *today = [self breakDateComponents:todayDate];
@@ -166,12 +184,14 @@
         NSMutableArray *wakeArray = [NSMutableArray array];
         NSMutableArray *sleepArray = [NSMutableArray array];
         
+        // Get future events for today
         for (NSDate *tempDate in self.model.wakeScheduleArray){
             
             //break time in to NSDateComponents
             wake = [self breakDateComponents:tempDate];
             
             if (wake.day == today.day && wake.month == today.month && wake.year == today.year) {
+                eventsToday = YES;
                 if (wake.hour > today.hour) {
                     [wakeArray addObject:wake];
                 }
@@ -184,10 +204,44 @@
             sleep = [self breakDateComponents:tempDate];
             
             if (sleep.day == today.day && sleep.month == today.month && sleep.year == today.year) {
+                eventsToday = YES;
                 if (sleep.hour > today.hour) {
                     [sleepArray addObject:sleep];
                 }
             }
+        }
+        
+        // If no future events for today, get tomorrow's instead
+        if (eventsToday && ![wakeArray count] && ![sleepArray count]) {
+            
+            [today setHour: 00];
+            [today setMinute: 00];
+            [today setSecond: 00];
+            todayDate = [[NSCalendar currentCalendar] dateFromComponents: today];
+
+            NSDate *tomorrowDate = [todayDate dateByAddingTimeInterval:60*60*24];
+            NSDateComponents *tomorrow = [self breakDateComponents:tomorrowDate];
+            
+            for (NSDate *tempDate in self.model.wakeScheduleArray){
+                
+                //break time in to NSDateComponents
+                wake = [self breakDateComponents:tempDate];
+                
+                if (wake.day == tomorrow.day && wake.month == tomorrow.month && wake.year == tomorrow.year) {
+                        [wakeArray addObject:wake];
+                }
+            }
+            
+            for (NSDate *tempDate in self.model.sleepScheduleArray){
+                
+                //break time in to NSDateComponents
+                sleep = [self breakDateComponents:tempDate];
+                
+                if (sleep.day == tomorrow.day && sleep.month == tomorrow.month && sleep.year == tomorrow.year) {
+                    [sleepArray addObject:sleep];
+                }
+            }
+            
         }
         
         // Sort array and find the event happening next
