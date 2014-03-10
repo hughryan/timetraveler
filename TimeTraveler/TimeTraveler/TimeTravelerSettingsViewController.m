@@ -104,9 +104,11 @@
 
 - (void)setupLocationLabel
 {
+    long currentTimeZoneAdjusted = (([self.model.startingTimeZone secondsFromGMT]) / 3600);
+    
     NSNumber *tempRow = self.model.selectedLocationRow;
     
-    NSNumber *locationRow = [NSNumber numberWithInt:kLocationListDefaultIndex];
+    NSNumber *locationRow = [NSNumber numberWithInt:((int)currentTimeZoneAdjusted + kLocationListDefaultIndex)];
     if (tempRow != nil) locationRow = tempRow;
     
     NSInteger defaultLocationRow = [locationRow intValue];

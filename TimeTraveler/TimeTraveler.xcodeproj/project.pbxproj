@@ -464,10 +464,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hugh McDonald (B2YGR82RW6)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeTraveler/TimeTraveler-Prefix.pch";
 				INFOPLIST_FILE = "TimeTraveler/TimeTraveler-Info.plist";
 				PRODUCT_NAME = TimeTraveler;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -481,6 +483,7 @@
 				GCC_PREFIX_HEADER = "TimeTraveler/TimeTraveler-Prefix.pch";
 				INFOPLIST_FILE = "TimeTraveler/TimeTraveler-Info.plist";
 				PRODUCT_NAME = TimeTraveler;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
