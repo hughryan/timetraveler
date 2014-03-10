@@ -556,12 +556,4 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 3) {
-        cell.backgroundColor = [UIColor clearColor];
-    }
-}
-
-
 @end

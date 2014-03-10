@@ -103,6 +103,54 @@
 }
 
 
+- (BOOL)isToday:(NSDate *)checkDate
+{
+    NSDate *todayDate = [NSDate date];
+    NSDateComponents *today = [self breakDateComponents:todayDate];
+    NSDateComponents *check = [self breakDateComponents:checkDate];
+    if (check.day == today.day && check.month == today.month && check.year == today.year) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
+- (BOOL)isTomorrow:(NSDate *)checkDate
+{
+    NSDateComponents *check = [self breakDateComponents:checkDate];
+    
+    NSDate *todayDate = [NSDate date];
+    NSDateComponents *today = [self breakDateComponents:todayDate];
+    [today setHour: 00];
+    [today setMinute: 00];
+    [today setSecond: 00];
+    todayDate = [[NSCalendar currentCalendar] dateFromComponents: today];
+    
+    NSDate *tomorrowDate = [todayDate dateByAddingTimeInterval:60*60*24];
+    NSDateComponents *tomorrow = [self breakDateComponents:tomorrowDate];
+    
+    if (check.day == tomorrow.day && check.month == tomorrow.month && check.year == tomorrow.year) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
+- (BOOL)isDeparture:(NSDate *)checkDate
+{
+    NSDateComponents *check = [self breakDateComponents:checkDate];
+    NSDateComponents *departure = [self breakDateComponents:self.model.selectedDepartureDate];
+    
+    if (check.day == departure.day && check.month == departure.month && check.year == departure.year) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
 -(void)updateBgImage
 {
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"plane.png"] forBarMetrics:UIBarMetricsDefault];
@@ -276,14 +324,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TimeTravelerDateCell *cell;
+    NSString *celltype = [[NSString alloc] init];
     
     // Check if there is an active trip
     if (self.activeTrip) {
     
-        cell = [tableView dequeueReusableCellWithIdentifier:@"dateCellID"];
+        if (indexPath.section == 0 && [self isToday:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]]) {
+            celltype = @"todayCellID";
+        } else {
+            celltype = @"dateCellID";
+        }
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:celltype];
         if (cell == nil) {
-                cell = [[TimeTravelerDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dateCellID"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell = [[TimeTravelerDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:celltype];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
     
         // Format strings
@@ -294,11 +349,13 @@
     
     } else { // No active trip
         
-        cell = [tableView dequeueReusableCellWithIdentifier:@"nilCellID"];
+        celltype = @"nilCellID";
+        cell = [tableView dequeueReusableCellWithIdentifier:celltype];
         if (cell == nil) {
-            cell = [[TimeTravelerDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"nilCellID"];
+            cell = [[TimeTravelerDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:celltype];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        
     }
     
     return cell;
@@ -307,8 +364,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat rowHeight = 70;
-    if (!self.activeTrip) rowHeight = tableView.bounds.size.height;
+    CGFloat rowHeight;
+    if (self.activeTrip) {
+        if (indexPath.section == 0 && [self isToday:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]]) {
+            rowHeight = 100;
+        } else {
+            rowHeight = 70;
+        }
+    } else {
+        rowHeight = tableView.bounds.size.height;
+    }
+
     return rowHeight;
 }
 
@@ -326,16 +392,31 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionTitle = nil;
+    
     if (self.activeTrip) {
-        NSDate *todayDate = [NSDate date];
-        NSDateComponents *today = [self breakDateComponents:todayDate];
-        NSDateComponents *event = [self breakDateComponents:[self.model.wakeScheduleArray objectAtIndex:section]];
-        if (event.day == today.day && event.month == today.month && event.year == today.year) {
-            sectionTitle = @"Today";
+        
+        if ([self isToday:[self.model.wakeScheduleArray objectAtIndex:section]])
+        {
+            if (section == 0) {
+                sectionTitle = NSLocalizedString(@"Today", nil);
+            } else {
+                sectionTitle = NSLocalizedString(@"Later Today", nil);
+            }
+            
+        } else if ([self isTomorrow:[self.model.wakeScheduleArray objectAtIndex:section]]) {
+            
+            sectionTitle = NSLocalizedString(@"Tomorrow", nil);
+
+        } else if ([self isDeparture:[self.model.wakeScheduleArray objectAtIndex:section]]) {
+            
+            sectionTitle = NSLocalizedString(@"Travel Day", nil);
+            
         } else {
+            
             sectionTitle = [self.dateFormatter stringFromDate:[self.model.wakeScheduleArray objectAtIndex:section]];
         }
     }
+    
     return sectionTitle;
 }
 
