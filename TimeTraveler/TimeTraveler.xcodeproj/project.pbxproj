@@ -28,6 +28,9 @@
 		577F88EB189F60BE00EC9DC3 /* TimeTravelerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F88EA189F60BE00EC9DC3 /* TimeTravelerTests.m */; };
 		57AA2B3218A47BC600AD9309 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57AA2B3018A47BC600AD9309 /* Main.storyboard */; };
 		57BD1AAF18A05D0F009A0567 /* TimeTravelerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsViewController.m */; };
+		57E4AD8F18CD735F00B3791D /* tt_icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E4AD8E18CD735F00B3791D /* tt_icon_120.png */; };
+		57E4AD9218CD73C000B3791D /* tt_icon_58.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E4AD9018CD73C000B3791D /* tt_icon_58.png */; };
+		57E4AD9318CD73C000B3791D /* tt_icon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E4AD9118CD73C000B3791D /* tt_icon_80.png */; };
 		57E8886C18A43FE300428077 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886B18A43FE300428077 /* SWRevealViewController.m */; };
 		57E8886F18A4524A00428077 /* TimeTravelerScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */; };
 		7EAFC90418B84D7100A6C182 /* TimeTravelerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFC90318B84D7100A6C182 /* TimeTravelerModel.m */; };
@@ -71,6 +74,9 @@
 		57AA2B3118A47BC600AD9309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = TimeTraveler/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57BD1AAD18A05D0F009A0567 /* TimeTravelerSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerSettingsViewController.h; sourceTree = "<group>"; };
 		57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTravelerSettingsViewController.m; sourceTree = "<group>"; };
+		57E4AD8E18CD735F00B3791D /* tt_icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_icon_120.png; sourceTree = "<group>"; };
+		57E4AD9018CD73C000B3791D /* tt_icon_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_icon_58.png; sourceTree = "<group>"; };
+		57E4AD9118CD73C000B3791D /* tt_icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_icon_80.png; sourceTree = "<group>"; };
 		57E8886A18A43FE300428077 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		57E8886B18A43FE300428077 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTravelerScheduleViewController.h; sourceTree = "<group>"; };
@@ -106,6 +112,9 @@
 		5726E0EA18CC9D3000562F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				57E4AD9018CD73C000B3791D /* tt_icon_58.png */,
+				57E4AD9118CD73C000B3791D /* tt_icon_80.png */,
+				57E4AD8E18CD735F00B3791D /* tt_icon_120.png */,
 				5726E0F518CCA37400562F23 /* tt_logo.png */,
 				5726E0F118CC9F8700562F23 /* tt_menu.png */,
 				5726E0F218CC9F8700562F23 /* tt_menu@2x.png */,
@@ -291,10 +300,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E4AD9318CD73C000B3791D /* tt_icon_80.png in Resources */,
 				5726E0EE18CC9D3000562F23 /* day.png in Resources */,
 				57AA2B3218A47BC600AD9309 /* Main.storyboard in Resources */,
+				57E4AD8F18CD735F00B3791D /* tt_icon_120.png in Resources */,
 				5726E0F018CC9D3000562F23 /* plane.png in Resources */,
 				577F88D8189F60BE00EC9DC3 /* Images.xcassets in Resources */,
+				57E4AD9218CD73C000B3791D /* tt_icon_58.png in Resources */,
 				5726E0EF18CC9D3000562F23 /* night.png in Resources */,
 				5726E0F318CC9F8700562F23 /* tt_menu.png in Resources */,
 				5726E0F618CCA37400562F23 /* tt_logo.png in Resources */,

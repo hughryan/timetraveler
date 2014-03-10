@@ -67,6 +67,7 @@
 {
     [self.model update];
     [self.model generateSchedule];
+    [self scheduleTripNotifications];
     [self checkForActiveTrip];
     [self updateBgImage];
 }
@@ -122,10 +123,6 @@
             
             //break time in to NSDateComponents
             wake = [self breakDateComponents:tempDate];
-            //NSLog(@"WAKE DAY: %ld", (long)wake.day);
-            //NSLog(@"WAKE HOUR: %ld", (long)wake.hour);
-            //NSLog(@"TODAY: %ld", (long)today.day);
-            //NSLog(@"NOW: %ld", (long)today.hour);
             
             if (wake.day == today.day && wake.month == today.month && wake.year == today.year) {
                 if (wake.hour > today.hour) {
@@ -138,10 +135,6 @@
             
             //break time in to NSDateComponents
             sleep = [self breakDateComponents:tempDate];
-            //NSLog(@"SLEEP DAY: %ld", (long)sleep.day);
-            //NSLog(@"SLEEP HOUR: %ld", (long)sleep.hour);
-            //NSLog(@"TODAY: %ld", (long)today.day);
-            //NSLog(@"NOW: %ld", (long)today.hour);
             
             if (sleep.day == today.day && sleep.month == today.month && sleep.year == today.year) {
                 if (sleep.hour > today.hour) {
@@ -149,8 +142,6 @@
                 }
             }
         }
-
-        //NSLog(@"Array Size: %ld", [wakeArray count]);
         
         // Sort array and find the event happening next
         NSString *currentEvent = @"Future";
@@ -208,6 +199,52 @@
 }
 
 
+- (void)scheduleTripNotifications
+{
+    // Clear all previous notifications
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    // If notifications are enabled set them
+    if (self.model.selectedNotifications) {
+        // Set new notifications
+        NSString *message = [[NSString alloc] init];
+    
+        // Wake notifications
+        message = @"wake";
+        for (NSDate *event in self.model.wakeScheduleArray) {
+            [self scheduleNotification:event withMessage:message];
+        }
+    
+        // Sleep notifications
+        message = @"sleep";
+        for (NSDate *event in self.model.sleepScheduleArray) {
+            [self scheduleNotification:event withMessage:message];
+        }
+    }
+}
+
+
+- (void)scheduleNotification:(NSDate *)scheduleDate withMessage:(NSString *)notificationMessage
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = scheduleDate;
+    notification.timeZone = self.model.startingTimeZone;
+    
+    if ([notificationMessage isEqualToString:@"wake"]) {
+        notification.alertBody = NSLocalizedString(@"Time to wake up. Be active and seek blue light.", nil);
+    } else if ([notificationMessage isEqualToString:@"sleep"]) {
+        notification.alertBody = NSLocalizedString(@"Time to sleep. Rest and avoid blue light.", nil);
+    } else {
+        return;
+    }
+    
+    notification.alertAction = NSLocalizedString(@"View Schedule", nil);
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+
 #pragma - Xcode Methods
 
 - (void)didReceiveMemoryWarning
@@ -223,10 +260,8 @@
 {
     // Return the number of sections.
     NSInteger numOfSections = [self.model.wakeScheduleArray count];
-    //self.activeTrip = YES;
     if (numOfSections == 0) {
         numOfSections = 1;
-        //self.activeTrip = NO;
     }
     return numOfSections;
 }
@@ -306,5 +341,6 @@
     }
     return sectionTitle;
 }
+
 
 @end
