@@ -59,7 +59,6 @@
     // Navbar logo
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tt_logo.png"]];
     self.navigationItem.titleView = imageView;
-
 }
 
 
@@ -67,8 +66,9 @@
 {
     [self.model update];
     [self.model generateSchedule];
-    [self scheduleTripNotifications];
     [self checkForActiveTrip];
+    NSLog(@"Active Trip: %d", self.activeTrip);
+    [self scheduleTripNotifications];
     [self updateBgImage];
 }
 
@@ -80,7 +80,6 @@
     } else {
         self.activeTrip = NO;
     }
-    NSLog(@"Active Trip: %d", self.activeTrip);
 }
 
 
@@ -195,7 +194,6 @@
     }
     
     [self.navigationController setNeedsStatusBarAppearanceUpdate];
-    
 }
 
 
@@ -277,7 +275,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     TimeTravelerDateCell *cell;
     
     // Check if there is an active trip

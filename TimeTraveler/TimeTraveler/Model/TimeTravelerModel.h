@@ -30,6 +30,7 @@
 - (void)save;
 - (void)generateSchedule;
 - (void)determineTimeTillDeparture;
+- (void)reset;
 
 + (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 

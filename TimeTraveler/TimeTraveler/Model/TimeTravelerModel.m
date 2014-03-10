@@ -29,16 +29,15 @@
 }
 
 
-- (id)init {
-
+- (id)init
+{
     [self update];
     return self;
-    
 }
 
 
-- (void)update {
-    
+- (void)update
+{
     self.startingTimeZone = [NSTimeZone systemTimeZone];
     
     NSUserDefaults *tripSettings = [NSUserDefaults standardUserDefaults];
@@ -52,12 +51,11 @@
     self.startDate = [tripSettings objectForKey:@"startDate"];
     
     [self determineTimeTillDeparture];
-    
 }
 
 
-- (void)save {
-    
+- (void)save
+{
     [NSTimeZone resetSystemTimeZone];
     self.startingTimeZone = [NSTimeZone systemTimeZone];
     NSLog(@"Departure Timezone: %@",[self.startingTimeZone name]);
@@ -76,12 +74,28 @@
     [tripSettings synchronize];
     
     [self determineTimeTillDeparture];
-    
 }
 
 
-- (void)determineTimeTillDeparture {
+- (void)reset
+{
+    self.startingTimeZone = nil;
+    self.selectedLocation = nil;
+    self.selectedLocationRow = nil;
+    self.selectedDepartureDate = [NSDate date];
+    self.selectedSleepTime = nil;
+    self.selectedWakeTime = nil;
+    self.selectedNotifications = [NSNumber numberWithUnsignedInteger:1];
+    self.startDate = [NSDate date];
+    self.wakeScheduleArray = nil;
+    self.sleepScheduleArray = nil;
     
+    [self save];
+}
+
+
+- (void)determineTimeTillDeparture
+{
     NSDate *today = [NSDate date];
     
     NSDate *zeroHour = [NSDate date];
@@ -95,16 +109,12 @@
     self.secInDay = 86400;
     self.timeTillDeparture = [self.selectedDepartureDate timeIntervalSinceNow];
     self.secondsPassedToday = [today timeIntervalSinceDate:zeroHour];
-    
 }
 
 
-- (long)calculateTimeZoneDifference{
-    
+- (long)calculateTimeZoneDifference
+{
     NSTimeZone *selectedTimeZone = [[NSTimeZone alloc] initWithName: self.selectedLocation];
-    
-    //NSLog(@"Destination TimeZone Offset: %ld",(long)[selectedTimeZone secondsFromGMT]);
-    //NSLog(@"Current TimeZone Offset: %ld",(long)[self.currentTimeZone secondsFromGMT]);
     
     long currentTimeZoneAdjusted = ((([self.startingTimeZone secondsFromGMT]) / 3600) + 12);
     long destinationTimeZoneAdjusted = ((([selectedTimeZone secondsFromGMT]) / 3600) + 12);
@@ -128,7 +138,15 @@
 
 - (void)generateSchedule
 {
+    // Clear previous schedule arrays
+    self.wakeScheduleArray = nil;
+    self.sleepScheduleArray = nil;
+    // If data is not set, return without updating arrays
+    if (self.startDate == nil || self.selectedWakeTime == nil || self.selectedSleepTime == nil || self.selectedDepartureDate == nil) {
+        return;
+    }
     
+    // Data is set so let's create the arrays
     self.wakeScheduleArray = [[NSMutableArray alloc] init];
     self.sleepScheduleArray = [[NSMutableArray alloc] init];
     
@@ -190,12 +208,6 @@
     // set dates to first day of adjustments
     tempWakeDate = [tempWakeDate dateByAddingTimeInterval:(-(daysToBeAdjusted - 1)*60*60*24)];
     tempSleepDate = [tempSleepDate dateByAddingTimeInterval:(-(daysToBeAdjusted - 1)*60*60*24)];
-    
-    //NSLog(@"wake origin: %@", tempWakeDate);
-    //NSLog(@"sleep origin: %@", tempSleepDate);
-   
-    //NSLog(@"true wake origin: %@", self.selectedWakeTime);
-    //NSLog(@"true sleep origin: %@", self.selectedSleepTime);
 
     while (daysToBeAdjusted > 0) {
         
@@ -233,7 +245,6 @@
     // Remove the discards from the final array
     [self.wakeScheduleArray removeObjectsInArray:discardedWake];
     [self.sleepScheduleArray removeObjectsInArray:discardedSleep];
-    
 }
 
 
