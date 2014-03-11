@@ -273,7 +273,12 @@
         
         for (NSDateComponents *tempComp in wakeArray) {
             
-            if (tempComp.hour < nextEventTime.hour) {
+            if (tempComp.hour == nextEventTime.hour) {
+                if (tempComp.minute < nextEventTime.minute) {
+                    nextEventTime = tempComp;
+                    currentEvent = @"Sleep";
+                }
+            } else if (tempComp.hour < nextEventTime.hour) {
                 nextEventTime = tempComp;
                 // Next event is wake so current event is sleep
                 currentEvent = @"Sleep";
@@ -282,7 +287,12 @@
         
         for (NSDateComponents *tempComp in sleepArray) {
            
-            if (tempComp.hour < nextEventTime.hour) {
+            if (tempComp.hour == nextEventTime.hour) {
+                if (tempComp.minute < nextEventTime.minute) {
+                    nextEventTime = tempComp;
+                    currentEvent = @"wake";
+                }
+            } else if (tempComp.hour < nextEventTime.hour) {
                 nextEventTime = tempComp;
                 // Next event is sleep so current event is wake
                 currentEvent = @"Wake";
