@@ -192,7 +192,11 @@
             
             if (wake.day == today.day && wake.month == today.month && wake.year == today.year) {
                 eventsToday = YES;
-                if (wake.hour > today.hour) {
+                if (wake.hour == today.hour) {
+                    if (wake.minute > today.minute) {
+                        [wakeArray addObject:wake];
+                    }
+                } else if (wake.hour > today.hour) {
                     [wakeArray addObject:wake];
                 }
             }
@@ -205,7 +209,11 @@
             
             if (sleep.day == today.day && sleep.month == today.month && sleep.year == today.year) {
                 eventsToday = YES;
-                if (sleep.hour > today.hour) {
+                if (sleep.hour == today.hour) {
+                    if (sleep.minute > today.minute) {
+                        [sleepArray addObject:sleep];
+                    }
+                } else if (sleep.hour > today.hour) {
                     [sleepArray addObject:sleep];
                 }
             }
