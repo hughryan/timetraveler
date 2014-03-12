@@ -72,6 +72,10 @@
     self.model = [[TimeTravelerModel alloc] init];
     
     [self refreshSettings];
+    [self hideLocationPickerCell];
+    [self hideDepatureDatePickerCell];
+    [self hideWakeTimePickerCell];
+    [self hideSleepTimePickerCell];
 }
 
 
@@ -326,7 +330,6 @@
     self.locationPickerIsShowing = YES;
     
     [self.tableView beginUpdates];
-    
     [self.tableView endUpdates];
     
     self.locationPicker.hidden = NO;
@@ -337,6 +340,7 @@
         self.locationPicker.alpha = 1.0f;
         
     }];
+    
 
     self.locationLabel.textColor = [self.tableView tintColor];
 }
