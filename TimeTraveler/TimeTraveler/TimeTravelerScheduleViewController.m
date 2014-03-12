@@ -323,20 +323,24 @@
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     // If notifications are enabled set them
-    if (self.model.selectedNotifications) {
+    if ([self.model.selectedNotifications boolValue]) {
         // Set new notifications
         NSString *message = [[NSString alloc] init];
     
         // Wake notifications
         message = @"wake";
         for (NSDate *event in self.model.wakeScheduleArray) {
-            [self scheduleNotification:event withMessage:message];
+            if ([event timeIntervalSinceNow] > 0) {
+                [self scheduleNotification:event withMessage:message];
+            }
         }
     
         // Sleep notifications
         message = @"sleep";
         for (NSDate *event in self.model.sleepScheduleArray) {
-            [self scheduleNotification:event withMessage:message];
+            if ([event timeIntervalSinceNow] > 0) {
+                [self scheduleNotification:event withMessage:message];
+            }
         }
     }
 }
