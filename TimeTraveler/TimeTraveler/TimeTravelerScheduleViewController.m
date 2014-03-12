@@ -405,7 +405,7 @@
     // Check if there is an active trip
     if (self.activeTrip) {
     
-        if (indexPath.section == 0 && [self isToday:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]]) {
+        if (indexPath.section == 0 && ([self isToday:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]] || [self isTomorrow:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]])) {
             celltype = @"todayCellID";
         } else {
             celltype = @"dateCellID";
@@ -442,10 +442,10 @@
 {
     CGFloat rowHeight;
     if (self.activeTrip) {
-        if (indexPath.section == 0 && [self isToday:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]]) {
-            rowHeight = 100;
+        if (indexPath.section == 0 && ([self isToday:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]] || [self isTomorrow:[self.model.wakeScheduleArray objectAtIndex:indexPath.section]])) {
+            rowHeight = 200;
         } else {
-            rowHeight = 70;
+            rowHeight = 50;
         }
     } else {
         rowHeight = tableView.bounds.size.height;

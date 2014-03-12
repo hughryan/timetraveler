@@ -298,7 +298,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         
         self.departureDatePicker.alpha = 1.0f;
-        
+     
     }];
     
     self.departureDateLabel.textColor = [self.tableView tintColor];
