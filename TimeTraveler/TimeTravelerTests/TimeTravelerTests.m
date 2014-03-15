@@ -45,7 +45,7 @@ void setData()
 }
 
 
-//integration test for saving trip data at once
+//integration test for saving all trip data at once
 - (void)testBasicTrip
 {
     setData();
@@ -64,26 +64,31 @@ void setData()
     XCTAssertNotNil(tempNotification);
 }
 
-- (void)testTimeZone
+//Following tests are for saving trip data
+
+//Unit test for saving time zone to travel to.
+- (void)testArrivalTimeZone
 {
     NSTimeZone *tempTimeZone = [NSTimeZone localTimeZone];
-    XCTAssertNotNil(tempTimeZone);
+    XCTAssertNotNil(tempTimeZone, @"Arrival time zone test failed");
 }
 
-
-- (void) testDeparture
+//Test for saving current timezone
+- (void) testDepartureTimeZone
 {
     NSTimeZone *tempTimeZone = [NSTimeZone localTimeZone];
-    XCTAssertNotNil(tempTimeZone);
+    XCTAssertNotNil(tempTimeZone, @"Departure time zone test failed");
 }
 
+//Saving normal sleep time test
 - (void)testSleep
 {
     NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
     NSDate *tempSleepTime = [tripSettings objectForKey:@"sleepTime"];
-    XCTAssertNotNil(tempSleepTime, @"Basic trip has Failed");
+    XCTAssertNotNil(tempSleepTime, @"Sleep time test failed");
 }
 
+//Saving normal wake time test
 - (void)testWake
 {
     NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
@@ -91,32 +96,45 @@ void setData()
     XCTAssertNotNil(tempWakeTime, @"Wake test Failed");
 }
 
+//Test notifications boolean
 - (void)testNotificationsButton
 {
     NSUserDefaults *tripSettings = [[NSUserDefaults alloc] init];
     NSNumber *tempNotification = [tripSettings objectForKey:@"notifications"];
-    XCTAssertNotNil(tempNotification, @"Notifications has failed");
+    XCTAssertNotNil(tempNotification, @"Notifications test has failed");
 }
 
-- (void) goingEastLessThanTwelve
-{
-    //NSUserDefaults * tripSettings = [[NSUserDefaults alloc] init];
-    //long result = 0;
-    //result = TimeTravelerModel.CalculateTimeZoneDifference;
-}
 
-- (void) goingEastGreaterThanOrEqualTwelve
+//The following tests are edge cases for our algorithm
+
+//Test sub-hemisphere Eastern travel
+- (void)testGoingEastLessThanTwelve
 {
+    
+    TimeTravelerModel * model = [[TimeTravelerModel alloc] init];
+    model.selectedLocation = @"-4";
+    [model generateSchedule];
+     XCTAssertNotNil(model.wakeScheduleArray, @"Going east < 12 failure");
     
 }
 
-- (void) goingWestLessThanTwelve
+//Test sub-hemisphere western travel
+- (void)testGoingWestLessThanTwelve
 {
-    
+    TimeTravelerModel * model = [[TimeTravelerModel alloc] init];
+    model.selectedLocation = @"-10";
+    [model generateSchedule];
+    XCTAssertNotNil(model.wakeScheduleArray, @"Going West < 12 failure");
 }
 
-- (void) goingWestGreaterThanOrEqualTwelve
+//test 12 hour trips algorithm is correct
+- (void)testGoingTwelve
 {
+    
+    TimeTravelerModel * model = [[TimeTravelerModel alloc] init];
+    model.selectedLocation = @"8";
+    [model generateSchedule];
+    XCTAssertNotNil(model.wakeScheduleArray, @"Going East / West > 12 failure");
 }
 
 
