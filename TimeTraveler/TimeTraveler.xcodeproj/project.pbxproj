@@ -161,13 +161,8 @@
 				577F88CE189F60BE00EC9DC3 /* TimeTravelerAppDelegate.h */,
 				577F88CF189F60BE00EC9DC3 /* TimeTravelerAppDelegate.m */,
 				57AA2B3018A47BC600AD9309 /* Main.storyboard */,
-				572DA9E718CB0C5B00732D50 /* TimeTravelerDateCell.h */,
-				572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */,
-				57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */,
-				57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */,
-				57BD1AAD18A05D0F009A0567 /* TimeTravelerSettingsViewController.h */,
-				57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsViewController.m */,
-				577F88D7189F60BE00EC9DC3 /* Images.xcassets */,
+				57A9497418D3DA1500D11579 /* Schedule */,
+				57A9497518D3DA9200D11579 /* Settings */,
 				57E8886918A43FE300428077 /* SWRevealViewController */,
 				57E8886218A43EC900428077 /* Model */,
 				577F88C6189F60BE00EC9DC3 /* Supporting Files */,
@@ -178,6 +173,7 @@
 		577F88C6189F60BE00EC9DC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				577F88D7189F60BE00EC9DC3 /* Images.xcassets */,
 				5726E0EA18CC9D3000562F23 /* Images */,
 				577F88C7189F60BE00EC9DC3 /* TimeTraveler-Info.plist */,
 				577F88C8189F60BE00EC9DC3 /* InfoPlist.strings */,
@@ -203,6 +199,26 @@
 				577F88E7189F60BE00EC9DC3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57A9497418D3DA1500D11579 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				572DA9E718CB0C5B00732D50 /* TimeTravelerDateCell.h */,
+				572DA9E818CB0C5B00732D50 /* TimeTravelerDateCell.m */,
+				57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */,
+				57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
+		57A9497518D3DA9200D11579 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				57BD1AAD18A05D0F009A0567 /* TimeTravelerSettingsViewController.h */,
+				57BD1AAE18A05D0F009A0567 /* TimeTravelerSettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		57E8886218A43EC900428077 /* Model */ = {
