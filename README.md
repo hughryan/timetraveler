@@ -19,14 +19,15 @@ Zac Carlson
 Sean McDonald
 Robert Combs
 
-∑         iPhone/iPod Touch with iOS 7.0 or higher
+Requirements:
+-	iPhone/iPod Touch with iOS 7.0 or higher
 
-To install:
+Install:
 Download from the Apple App Store.
 
 -----------------------------------------------------------------
 
-The Time Traveler app is desinged for travelers who need to cross time zones.
+The Time Traveler app is designed for travelers who need to cross time zones.
 Time Traveler adjusts the users circadian rhythm to the new time zone by providing new wake and sleep times each day.
 
 For the best results we recommend you do the following:
