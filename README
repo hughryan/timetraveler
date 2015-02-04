@@ -1,14 +1,9 @@
-TimeTraveler
-============
-
-iOS Application for managing Jet Lag
-
+TimeTraveler - iOS Application for managing Jet Lag
 -----------------------------------------------------------------
 
 Welcome to the Time Traveler Application!
 
-Time Traveler is an iPhone application and will be available for download on the Apple App Store.
-Requirements:
+Time Traveler is an iPhone application and is available for download on the Apple App Store.
 
 Authors:
 Hugh McDonald
@@ -20,7 +15,7 @@ Sean McDonald
 Robert Combs
 
 Requirements:
--	iPhone/iPod Touch with iOS 8.1 or higher
+- iPhone/iPod Touch with iOS 8.1 or higher
 
 Install:
 Download from the Apple App Store.
