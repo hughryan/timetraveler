@@ -77,8 +77,8 @@
 		57E4AD8E18CD735F00B3791D /* tt_icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_icon_120.png; sourceTree = "<group>"; };
 		57E4AD9018CD73C000B3791D /* tt_icon_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_icon_58.png; sourceTree = "<group>"; };
 		57E4AD9118CD73C000B3791D /* tt_icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_icon_80.png; sourceTree = "<group>"; };
-		57E8886A18A43FE300428077 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		57E8886B18A43FE300428077 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		57E8886A18A43FE300428077 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
+		57E8886B18A43FE300428077 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
 		57E8886D18A4524A00428077 /* TimeTravelerScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeTravelerScheduleViewController.h; path = Schedule/TimeTravelerScheduleViewController.h; sourceTree = "<group>"; };
 		57E8886E18A4524A00428077 /* TimeTravelerScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeTravelerScheduleViewController.m; path = Schedule/TimeTravelerScheduleViewController.m; sourceTree = "<group>"; };
 		7EAFC90218B84D7100A6C182 /* TimeTravelerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeTravelerModel.h; path = TimeTraveler/Model/TimeTravelerModel.h; sourceTree = SOURCE_ROOT; };
@@ -287,6 +287,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = snowFish;
 				TargetAttributes = {
+					577F88BB189F60BE00EC9DC3 = {
+						DevelopmentTeam = VC6GP34QGH;
+					};
 					577F88DC189F60BE00EC9DC3 = {
 						TestTargetID = 577F88BB189F60BE00EC9DC3;
 					};
@@ -479,12 +482,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hugh McDonald (B2YGR82RW6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeTraveler/Supporting/TimeTraveler-Prefix.pch";
 				INFOPLIST_FILE = "TimeTraveler/Supporting/TimeTraveler-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = TimeTraveler;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -495,11 +500,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeTraveler/Supporting/TimeTraveler-Prefix.pch";
 				INFOPLIST_FILE = "TimeTraveler/Supporting/TimeTraveler-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = TimeTraveler;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -515,7 +523,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TimeTraveler/TimeTraveler-Prefix.pch";
+				GCC_PREFIX_HEADER = "TimeTraveler/Supporting/TimeTraveler-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -537,7 +545,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TimeTraveler/TimeTraveler-Prefix.pch";
+				GCC_PREFIX_HEADER = "TimeTraveler/Supporting/TimeTraveler-Prefix.pch";
 				INFOPLIST_FILE = "TimeTravelerTests/TimeTravelerTests-Info.plist";
 				PRODUCT_NAME = TimeTravelerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";

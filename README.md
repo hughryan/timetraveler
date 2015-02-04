@@ -20,7 +20,7 @@ Sean McDonald
 Robert Combs
 
 Requirements:
--	iPhone/iPod Touch with iOS 7.0 or higher
+-	iPhone/iPod Touch with iOS 8.1 or higher
 
 Install:
 Download from the Apple App Store.

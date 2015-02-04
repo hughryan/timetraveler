@@ -144,7 +144,7 @@
     NSDate *tempSleepTime = self.model.selectedSleepTime;
     
     NSDate *defaultSleepTime = [NSDate date];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
     NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: defaultSleepTime];
     [components setHour: 22];
     [components setMinute: 00];
@@ -165,7 +165,7 @@
     NSDate *tempWakeTime = self.model.selectedWakeTime;
     
     NSDate *defaultWakeTime = [NSDate date];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
     NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: defaultWakeTime];
     [components setHour: 8];
     [components setMinute: 00];
